@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Creative Agency - Annual Report 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --electric-blue: #0066FF;
+            --hot-pink: #FF1493;
+            --acid-green: #CCFF00;
+            --deep-purple: #6B21A8;
+            --orange: #FF6B00;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gray: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--gray);
+            color: var(--black);
+            line-height: 1.5;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover */
+        .cover {
+            background: var(--black);
+            padding: 0;
+            position: relative;
+        }
+
+        .cover-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, var(--hot-pink) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--electric-blue) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, var(--deep-purple) 0%, transparent 60%);
+            opacity: 0.4;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            padding: 30mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cover-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -1px;
+        }
+
+        .cover-year-badge {
+            background: var(--acid-green);
+            color: var(--black);
+            padding: 8px 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .cover-title-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover-title {
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 0.9;
+            color: var(--white);
+            letter-spacing: -4px;
+        }
+
+        .cover-title span {
+            display: block;
+        }
+
+        .cover-title .highlight {
+            color: var(--acid-green);
+            -webkit-text-stroke: 2px var(--acid-green);
+        }
+
+        .cover-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 30px;
+            max-width: 400px;
+        }
+
+        /* Interior */
+        .interior {
+            background: var(--white);
+            padding: 25mm 30mm;
+            position: relative;
+        }
+
+        .page-number {
+            position: absolute;
+            top: 25mm;
+            right: 30mm;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--acid-green);
+            padding: 5px 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .body-text {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--black);
+            max-width: 450px;
+        }
+
+        /* Stats Creative */
+        .stats-creative {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            margin: 40px 0;
+            border: 3px solid var(--black);
+        }
+
+        .stat-creative {
+            padding: 30px;
+            border-right: 3px solid var(--black);
+            border-bottom: 3px solid var(--black);
+        }
+
+        .stat-creative:nth-child(2n) {
+            border-right: none;
+        }
+
+        .stat-creative:nth-child(n+3) {
+            border-bottom: none;
+        }
+
+        .stat-value-creative {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .stat-value-creative.pink { color: var(--hot-pink); }
+        .stat-value-creative.blue { color: var(--electric-blue); }
+        .stat-value-creative.green { color: var(--acid-green); background: var(--black); display: inline-block; padding: 5px 10px; }
+        .stat-value-creative.orange { color: var(--orange); }
+
+        .stat-label-creative {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            color: var(--gray);
+        }
+
+        /* Quote Creative */
+        .quote-creative {
+            background: var(--electric-blue);
+            color: var(--white);
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .quote-creative::before {
+            content: '"';
+            font-size: 200px;
+            font-weight: 800;
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .quote-text-creative {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author-creative {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image {
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--white);
+        }
+
+        .project-image.pink { background: var(--hot-pink); }
+        .project-image.blue { background: var(--electric-blue); }
+        .project-image.purple { background: var(--deep-purple); }
+        .project-image.orange { background: var(--orange); }
+
+        .project-info {
+            padding: 15px 0;
+        }
+
+        .project-client {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* Split Colors */
+        .split-colors {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 297mm;
+        }
+
+        .split-pink {
+            background: var(--hot-pink);
+            padding: 30mm 25mm;
+            color: var(--white);
+        }
+
+        .split-black {
+            background: var(--black);
+            padding: 30mm 25mm;
+            color: var(--white);
+        }
+
+        .split-pink .section-tag,
+        .split-black .section-tag {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .split-pink .section-title,
+        .split-black .section-title {
+            color: var(--white);
+        }
+
+        /* Service List */
+        .service-list {
+            margin: 30px 0;
+        }
+
+        .service-item {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .service-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Awards */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .award-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .award-count {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--acid-green);
+        }
+
+        .award-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        /* Team Creative */
+        .team-strip {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .team-member-creative {
+            flex: 0 0 auto;
+            width: 120px;
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            color: var(--white);
+        }
+
+        .member-info-creative {
+            margin-top: 10px;
+        }
+
+        .member-name-creative {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .member-role-creative {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* Big Numbers */
+        .big-number-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .big-number {
+            font-size: 180px;
+            font-weight: 800;
+            line-height: 0.85;
+            letter-spacing: -10px;
+        }
+
+        .big-number-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+
+        /* Final Creative */
+        .final-creative {
+            background: linear-gradient(135deg, var(--hot-pink), var(--deep-purple), var(--electric-blue));
+            padding: 30mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            min-height: 297mm;
+        }
+
+        .final-creative-title {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .final-creative-cta {
+            background: var(--white);
+            color: var(--black);
+            padding: 15px 40px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .final-contact {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div class="page cover">
+        <div class="cover-gradient"></div>
+        <div class="cover-content">
+            <div class="cover-top">
+                <div class="cover-logo">BLOOM</div>
+                <div class="cover-year-badge">ANNUAL REPORT 2024</div>
+            </div>
+            <div class="cover-title-area">
+                <h1 class="cover-title">
+                    <span>THE</span>
+                    <span>YEAR</span>
+                    <span>WE</span>
+                    <span class="highlight">BLOOMED</span>
+                </h1>
+                <p class="cover-subtitle">A creative agency built on bold ideas, brave clients, and beautiful outcomes. Here's how we made magic happen.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro / Numbers -->
+    <div class="page interior">
+        <span class="page-number">01</span>
+
+        <div class="section-tag">The Year in Numbers</div>
+        <h2 class="section-title">We don't just make<br>things pretty.<br>We make them work.</h2>
+
+        <div class="body-text">
+            <p>2024 was our biggest year yet. We partnered with brands ready to take risks, tell stories differently, and connect with audiences in ways that actually matter. Here's the proof that creativity drives results.</p>
+        </div>
+
+        <div class="stats-creative">
+            <div class="stat-creative">
+                <div class="stat-value-creative pink">47</div>
+                <div class="stat-label-creative">Campaigns Launched</div>
+            </div>
+            <div class="stat-creative">
+                <div class="stat-value-creative blue">$2.3B</div>
+                <div class="stat-label-creative">Client Revenue Generated</div>
+            </div>
+            <div class="stat-creative">
+                <div class="stat-value-creative green">892M</div>
+                <div class="stat-label-creative">Social Impressions</div>
+            </div>
+            <div class="stat-creative">
+                <div class="stat-value-creative orange">340%</div>
+                <div class="stat-label-creative">Average ROI</div>
+            </div>
+        </div>
+
+        <div class="quote-creative">
+            <p class="quote-text-creative">Working with Bloom felt like unlocking a superpower we didn't know we had. They see possibilities where others see problems.</p>
+            <p class="quote-author-creative">- Sarah Chen, CMO at TechFlow</p>
+        </div>
+    </div>
+
+    <!-- Featured Work -->
+    <div class="page interior">
+        <span class="page-number">02</span>
+
+        <div class="section-tag">Featured Work</div>
+        <h2 class="section-title">Some of our<br>favorite projects</h2>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image pink">[Campaign Visual]</div>
+                <div class="project-info">
+                    <div class="project-client">Nike x Bloom</div>
+                    <div class="project-title">"Run Your Truth" Campaign</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image blue">[Brand Identity]</div>
+                <div class="project-info">
+                    <div class="project-client">Spotify</div>
+                    <div class="project-title">Wrapped 2024 Experience</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image purple">[Digital Platform]</div>
+                <div class="project-info">
+                    <div class="project-client">Airbnb</div>
+                    <div class="project-title">Icons Launch Campaign</div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image orange">[OOH Campaign]</div>
+                <div class="project-info">
+                    <div class="project-client">Patagonia</div>
+                    <div class="project-title">"Buy Less" Initiative</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="body-text" style="margin-top: 30px;">
+            <p>Every project starts with a question: What story needs to be told? From global campaigns to intimate brand launches, we obsess over the details that make people feel something.</p>
+        </div>
+    </div>
+
+    <!-- Services & Awards -->
+    <div class="page split-colors">
+        <div class="split-pink">
+            <div class="section-tag">What We Do</div>
+            <h2 class="section-title" style="font-size: 32px;">Our Services</h2>
+
+            <div class="service-list">
+                <div class="service-item">
+                    <span class="service-name">Brand Strategy</span>
+                    <span class="service-count">18 projects</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Visual Identity</span>
+                    <span class="service-count">24 projects</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Campaign Creative</span>
+                    <span class="service-count">31 projects</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Digital Experience</span>
+                    <span class="service-count">15 projects</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Content Production</span>
+                    <span class="service-count">42 projects</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-black">
+            <div class="section-tag">Recognition</div>
+            <h2 class="section-title" style="font-size: 32px;">Awards Won</h2>
+
+            <div class="awards-grid">
+                <div class="award-item">
+                    <div class="award-count">3</div>
+                    <div class="award-name">Cannes Lions</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-count">7</div>
+                    <div class="award-name">D&AD Pencils</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-count">12</div>
+                    <div class="award-name">Webby Awards</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-count">5</div>
+                    <div class="award-name">Clio Awards</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-count">8</div>
+                    <div class="award-name">Effie Awards</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-count">4</div>
+                    <div class="award-name">One Show</div>
+                </div>
+            </div>
+
+            <div class="big-number-section">
+                <div class="big-number" style="font-size: 100px;">39</div>
+                <div class="big-number-label">Total Awards in 2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team -->
+    <div class="page interior">
+        <span class="page-number">04</span>
+
+        <div class="section-tag">Our People</div>
+        <h2 class="section-title">The humans<br>behind the magic</h2>
+
+        <div class="body-text">
+            <p>We're 87 curious minds from 23 countries, united by a shared belief: the best creative work happens when diverse perspectives collide. Our team grew by 40% this year, and we're just getting started.</p>
+        </div>
+
+        <div class="team-strip">
+            <div class="team-member-creative">
+                <div class="member-avatar">[Photo]</div>
+                <div class="member-info-creative">
+                    <div class="member-name-creative">Maya Rodriguez</div>
+                    <div class="member-role-creative">CEO & Founder</div>
+                </div>
+            </div>
+            <div class="team-member-creative">
+                <div class="member-avatar">[Photo]</div>
+                <div class="member-info-creative">
+                    <div class="member-name-creative">James Liu</div>
+                    <div class="member-role-creative">Chief Creative</div>
+                </div>
+            </div>
+            <div class="team-member-creative">
+                <div class="member-avatar">[Photo]</div>
+                <div class="member-info-creative">
+                    <div class="member-name-creative">Aisha Patel</div>
+                    <div class="member-role-creative">Strategy Lead</div>
+                </div>
+            </div>
+            <div class="team-member-creative">
+                <div class="member-avatar">[Photo]</div>
+                <div class="member-info-creative">
+                    <div class="member-name-creative">Erik Svensson</div>
+                    <div class="member-role-creative">Design Director</div>
+                </div>
+            </div>
+            <div class="team-member-creative">
+                <div class="member-avatar">[Photo]</div>
+                <div class="member-info-creative">
+                    <div class="member-name-creative">Luna Kim</div>
+                    <div class="member-role-creative">Tech Lead</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-creative" style="grid-template-columns: repeat(3, 1fr); margin-top: 40px;">
+            <div class="stat-creative">
+                <div class="stat-value-creative pink" style="font-size: 42px;">87</div>
+                <div class="stat-label-creative">Team Members</div>
+            </div>
+            <div class="stat-creative">
+                <div class="stat-value-creative blue" style="font-size: 42px;">23</div>
+                <div class="stat-label-creative">Countries</div>
+            </div>
+            <div class="stat-creative" style="border-right: none;">
+                <div class="stat-value-creative orange" style="font-size: 42px;">4.8</div>
+                <div class="stat-label-creative">Glassdoor Rating</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final -->
+    <div class="page final-creative">
+        <h2 class="final-creative-title">Ready to<br>make something<br>amazing?</h2>
+        <div class="final-creative-cta">Let's Talk</div>
+        <div class="final-contact">
+            <p>hello@bloomcreative.com</p>
+            <p>New York + London + Tokyo + Sao Paulo</p>
+            <p>@bloomcreative</p>
+        </div>
+    </div>
+
+</body>
+</html>

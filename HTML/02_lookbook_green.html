@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookbook Green - Nature's Palette</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        :root {
+            --green-dark: #2E7D32;
+            --green: #4CAF50;
+            --green-light: #81C784;
+            --sage: #A5D6A7;
+            --mint: #E8F5E9;
+            --forest: #1B5E20;
+            --text-dark: #1B3A1B;
+            --text-light: #4A6741;
+            --white: #FFFFFF;
+            --cream: #F9FBF9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #D5D5D5;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        .book-container {
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--white);
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(180deg, var(--forest) 0%, var(--green-dark) 50%, var(--green) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0;
+            position: relative;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 25 L30 20 L25 25 Z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 100px 60px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover h1 {
+            color: var(--white);
+            font-size: 64px;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .cover .tagline {
+            color: var(--sage);
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+
+        .leaf-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 40px;
+        }
+
+        .leaf-icon svg {
+            fill: var(--sage);
+        }
+
+        .cover-footer {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .cover-footer span {
+            color: var(--mint);
+            font-size: 12px;
+            letter-spacing: 4px;
+        }
+
+        /* TOC */
+        .toc {
+            padding: 60px 70px;
+            background: var(--cream);
+        }
+
+        .toc-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            font-size: 42px;
+            color: var(--forest);
+            letter-spacing: 2px;
+        }
+
+        .toc-line {
+            flex: 1;
+            height: 1px;
+            background: var(--sage);
+            margin-left: 30px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px dashed var(--sage);
+        }
+
+        .toc-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 20px;
+        }
+
+        .toc-title {
+            flex: 1;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .toc-dots {
+            flex: 1;
+            border-bottom: 2px dotted var(--sage);
+            margin: 0 15px;
+        }
+
+        .toc-page {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--green-dark);
+        }
+
+        /* Content Pages */
+        .content-page {
+            padding: 60px 70px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb-item {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+
+        .breadcrumb-divider {
+            width: 20px;
+            height: 1px;
+            background: var(--sage);
+        }
+
+        .chapter-title {
+            font-size: 36px;
+            color: var(--forest);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .chapter-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .content-text {
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* Nature Grid */
+        .nature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .nature-item {
+            background: var(--mint);
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .nature-icon {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 12px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .nature-item h4 {
+            font-size: 15px;
+            color: var(--forest);
+            margin-bottom: 6px;
+        }
+
+        .nature-item p {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        /* Image Layouts */
+        .image-duo {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-dark);
+            font-size: 11px;
+            letter-spacing: 2px;
+            min-height: 180px;
+            border-radius: 4px;
+        }
+
+        .image-tall {
+            min-height: 380px;
+        }
+
+        .image-full {
+            grid-column: 1 / -1;
+            min-height: 250px;
+        }
+
+        /* Full Image Page */
+        .full-image-page {
+            min-height: 297mm;
+            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .full-image-page .caption {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--forest);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--forest);
+            color: var(--white);
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 100px;
+            position: absolute;
+            top: 5px;
+            left: 25px;
+            color: var(--green);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .highlight-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box cite {
+            display: block;
+            margin-top: 15px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-style: normal;
+            color: var(--sage);
+        }
+
+        /* Feature Box */
+        .feature-box {
+            background: var(--mint);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--green);
+        }
+
+        .feature-box h4 {
+            font-size: 18px;
+            color: var(--forest);
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Two Column */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--mint);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            color: var(--forest);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--green-dark);
+            margin-top: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 30px 0;
+            padding-left: 25px;
+            border-left: 2px solid var(--sage);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 30px 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--green);
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--forest);
+            margin-bottom: 8px;
+        }
+
+        .timeline-text {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .product-card h4 {
+            font-size: 18px;
+            color: var(--forest);
+            margin-bottom: 8px;
+        }
+
+        .product-card .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Chapter Opener */
+        .chapter-opener {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--green-dark) 100%);
+            min-height: 297mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .chapter-opener .chapter-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 120px;
+            color: var(--sage);
+            opacity: 0.3;
+            margin-bottom: -30px;
+        }
+
+        .chapter-opener h2 {
+            font-size: 42px;
+            color: var(--white);
+            letter-spacing: 4px;
+        }
+
+        .chapter-opener .chapter-subtitle {
+            font-size: 14px;
+            color: var(--sage);
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        /* Size Chart */
+        .size-chart {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .size-chart th, .size-chart td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--sage);
+            font-size: 12px;
+        }
+
+        .size-chart th {
+            background: var(--green-dark);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .size-chart td {
+            background: var(--mint);
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 70px;
+            right: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: var(--green-light);
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--green);
+        }
+
+        /* Back Cover */
+        .back-cover {
+            background: var(--forest);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px;
+            min-height: 297mm;
+        }
+
+        .back-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: var(--white);
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+        }
+
+        .back-tagline {
+            color: var(--sage);
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-links a {
+            color: var(--mint);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <!-- Page 1: Cover -->
+        <div class="page cover">
+            <div class="cover-content">
+                <div class="leaf-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+                    </svg>
+                </div>
+                <p class="tagline">Nature Inspired</p>
+                <h1>Botanica</h1>
+            </div>
+            <div class="cover-footer">
+                <span>LOOKBOOK COLLECTION 2025</span>
+            </div>
+        </div>
+
+        <!-- Page 2: TOC -->
+        <div class="page toc">
+            <div class="toc-header">
+                <h2>Contents</h2>
+                <div class="toc-line"></div>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">01</div>
+                <span class="toc-title">Our Philosophy</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">03</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">02</div>
+                <span class="toc-title">Founder's Message</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">04</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">03</div>
+                <span class="toc-title">Spring Collection</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">05</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">04</div>
+                <span class="toc-title">Gallery: Looks 01-08</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">07</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">05</div>
+                <span class="toc-title">Signature Pieces</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">09</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">06</div>
+                <span class="toc-title">Sustainable Materials</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">11</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">07</div>
+                <span class="toc-title">Our Impact</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">13</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">08</div>
+                <span class="toc-title">Artisan Stories</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">15</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">09</div>
+                <span class="toc-title">Our Journey</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">17</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">10</div>
+                <span class="toc-title">Styling Guide</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">18</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">11</div>
+                <span class="toc-title">Size Guide</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">20</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">12</div>
+                <span class="toc-title">Care Guide</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">21</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">13</div>
+                <span class="toc-title">Campaign</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">22</span>
+            </div>
+            <div class="toc-item">
+                <div class="toc-number">14</div>
+                <span class="toc-title">Stockists</span>
+                <div class="toc-dots"></div>
+                <span class="toc-page">24</span>
+            </div>
+        </div>
+
+        <!-- Page 3: Philosophy -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter One</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Philosophy</span>
+                </div>
+                <h2 class="chapter-title">Rooted in Nature</h2>
+                <p class="chapter-subtitle">Our commitment to sustainable fashion</p>
+            </div>
+            <p class="content-text">
+                At Botanica, we believe that fashion should exist in harmony with nature. Our designs are inspired by the organic forms, colors, and textures found in the natural world, translated into wearable art that celebrates both beauty and sustainability. Every decision we make is guided by our respect for the environment and the people who inhabit it.
+            </p>
+            <div class="nature-grid">
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Organic</h4>
+                    <p>100% organic certified materials</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Ethical</h4>
+                    <p>Fair trade partnerships</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Circular</h4>
+                    <p>Zero-waste design approach</p>
+                </div>
+            </div>
+            <p class="content-text">
+                Every piece in our collection tells a story of conscious creation. From seed to garment, we trace the journey of our materials, ensuring that each step honors both the people and planet involved in the process. We partner with family farms, artisan cooperatives, and sustainable mills to create fashion that feels as good as it looks.
+            </p>
+            <div class="highlight-box">
+                <p>In every walk with nature, one receives far more than they seek. Our garments are an invitation to carry that natural wisdom with you.</p>
+                <cite>- Botanica Design Team</cite>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>03</span>
+            </div>
+        </div>
+
+        <!-- Page 4: Founder's Message -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Two</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Letter</span>
+                </div>
+                <h2 class="chapter-title">A Letter from Our Founder</h2>
+            </div>
+            <p class="content-text">
+                Dear Friends,
+            </p>
+            <p class="content-text">
+                When I founded Botanica seven years ago, I had a simple dream: to create beautiful clothing that doesn't cost the earth. Growing up on my grandmother's farm, surrounded by gardens and forests, I learned that nature provides everything we need if we treat it with respect.
+            </p>
+            <p class="content-text">
+                The fashion industry had strayed far from these principles. Fast fashion, synthetic materials, exploitative labor practices - it all felt so disconnected from the natural rhythms I knew as a child. I wanted to create something different. Something that honored the earth and the hands that shape our garments.
+            </p>
+            <p class="content-text">
+                This collection, Spring Awakening, is our most ambitious yet. We've partnered with organic cotton farmers in India, linen weavers in Belgium, and natural dyers in Japan. Every piece represents countless hours of craftsmanship and care. When you wear Botanica, you're not just wearing clothes - you're wearing a commitment to a better world.
+            </p>
+            <p class="content-text">
+                Thank you for being part of this journey. Together, we're proving that fashion can be a force for good.
+            </p>
+            <p class="content-text" style="margin-top: 40px;">
+                With gratitude,<br>
+                <em style="font-family: 'Cormorant Garamond', serif; font-size: 18px;">Iris Chen</em><br>
+                Founder & Creative Director
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>04</span>
+            </div>
+        </div>
+
+        <!-- Page 5: Chapter Opener - Spring Collection -->
+        <div class="page chapter-opener">
+            <div class="chapter-num">01</div>
+            <h2>Spring Awakening</h2>
+            <p class="chapter-subtitle">The Collection</p>
+        </div>
+
+        <!-- Page 6: Collection Overview -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Three</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Collection</span>
+                </div>
+                <h2 class="chapter-title">Spring Awakening</h2>
+            </div>
+            <div class="image-duo">
+                <div class="image-placeholder image-tall">[HERO IMAGE]</div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="image-placeholder" style="flex: 1;">[DETAIL 01]</div>
+                    <div class="image-placeholder" style="flex: 1;">[DETAIL 02]</div>
+                </div>
+            </div>
+            <p class="content-text">
+                The Spring Awakening collection draws inspiration from the first blooms of the season. Soft greens, gentle creams, and touches of floral pink create a palette that feels both fresh and timeless. Each piece captures the energy of renewal and growth.
+            </p>
+            <p class="content-text">
+                This season, we've focused on versatile silhouettes that transition effortlessly from day to evening. Flowing dresses in organic silk, structured blazers in Belgian linen, and comfortable knits in organic cotton form the foundation of a truly sustainable wardrobe.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>06</span>
+            </div>
+        </div>
+
+        <!-- Page 7: Gallery 1 -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Gallery</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Looks 01-04</span>
+                </div>
+                <h2 class="chapter-title">The Edit</h2>
+            </div>
+            <div class="image-grid">
+                <div class="image-placeholder">[LOOK 01]</div>
+                <div class="image-placeholder">[LOOK 02]</div>
+                <div class="image-placeholder">[LOOK 03]</div>
+                <div class="image-placeholder">[LOOK 04]</div>
+            </div>
+            <p class="content-text">
+                Our opening looks establish the collection's natural palette. Forest greens and sage tones create a harmonious foundation, while organic textures add depth and interest. These pieces work together as a capsule wardrobe or stand alone as statement items.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>07</span>
+            </div>
+        </div>
+
+        <!-- Page 8: Gallery 2 -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Gallery</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Looks 05-08</span>
+                </div>
+                <h2 class="chapter-title">Continued</h2>
+            </div>
+            <div class="image-grid">
+                <div class="image-placeholder">[LOOK 05]</div>
+                <div class="image-placeholder">[LOOK 06]</div>
+                <div class="image-placeholder">[LOOK 07]</div>
+                <div class="image-placeholder">[LOOK 08]</div>
+            </div>
+            <p class="content-text">
+                The second series introduces lighter tones and more fluid silhouettes. Perfect for warmer days, these pieces combine the breathability of natural fibers with elegant cuts that flatter every figure. Each look transitions seamlessly from casual weekends to sophisticated evenings.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>08</span>
+            </div>
+        </div>
+
+        <!-- Page 9: Chapter Opener - Signature Pieces -->
+        <div class="page chapter-opener">
+            <div class="chapter-num">02</div>
+            <h2>Signature Pieces</h2>
+            <p class="chapter-subtitle">The Essential Edit</p>
+        </div>
+
+        <!-- Page 10: Signature Pieces -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Five</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Signatures</span>
+                </div>
+                <h2 class="chapter-title">Hero Pieces</h2>
+            </div>
+            <div class="two-column">
+                <div class="product-card">
+                    <h4>The Garden Dress</h4>
+                    <p class="price">$325</p>
+                    <p>Our signature piece in organic silk. Hand-dyed using plant-based colors. Features adjustable straps and hidden pockets. Available in Fern, Sage, and Cloud.</p>
+                </div>
+                <div class="product-card">
+                    <h4>The Linen Blazer</h4>
+                    <p class="price">$445</p>
+                    <p>Belgian linen, naturally wrinkled for character. Relaxed fit with sustainable coconut buttons. Available in Forest, Stone, and Driftwood.</p>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div class="image-placeholder">[SIGNATURE 01]</div>
+                <div class="image-placeholder">[SIGNATURE 02]</div>
+            </div>
+            <div class="product-card">
+                <h4>The Everyday Trouser</h4>
+                <p class="price">$285</p>
+                <p>High-waisted wide-leg trousers in organic cotton twill. Elastic waist for comfort, deep pockets for function. A wardrobe essential that works year-round.</p>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>10</span>
+            </div>
+        </div>
+
+        <!-- Page 11: Sustainable Materials -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Six</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Materials</span>
+                </div>
+                <h2 class="chapter-title">Sustainable Materials</h2>
+            </div>
+            <p class="content-text">
+                Our commitment to sustainability begins with the materials we choose. Every fabric in the Botanica collection has been carefully selected for its environmental credentials, quality, and beauty.
+            </p>
+            <div class="feature-box">
+                <h4>Organic Cotton</h4>
+                <p>GOTS-certified organic cotton from family farms in Gujarat, India. Grown without synthetic pesticides, using traditional farming methods that preserve soil health.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Belgian Linen</h4>
+                <p>European Flax certified linen from Flanders. Linen requires minimal water and no irrigation, making it one of the most sustainable fibers available.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Peace Silk</h4>
+                <p>Ahimsa silk that allows silkworms to complete their natural lifecycle. Sourced from small cooperatives in Karnataka who practice ethical sericulture.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Recycled Wool</h4>
+                <p>Post-consumer wool fibers reclaimed and respun into new yarn. Each garment saves water and reduces textile waste in landfills.</p>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>11</span>
+            </div>
+        </div>
+
+        <!-- Page 12: Materials Continued -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Six</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Materials</span>
+                </div>
+                <h2 class="chapter-title">Natural Dyes</h2>
+            </div>
+            <p class="content-text">
+                Color is emotion. At Botanica, we work exclusively with natural dyes derived from plants, minerals, and other organic sources. Our dye masters in Kyoto and Jaipur use techniques passed down through generations.
+            </p>
+            <div class="nature-grid">
+                <div class="nature-item">
+                    <div class="nature-icon" style="background: var(--forest);"></div>
+                    <h4>Indigo</h4>
+                    <p>Fermented indigo leaves</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon" style="background: #8B4513;"></div>
+                    <h4>Walnut</h4>
+                    <p>Walnut shell husks</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon" style="background: #DAA520;"></div>
+                    <h4>Turmeric</h4>
+                    <p>Turmeric root</p>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div class="image-placeholder">[DYE WORKSHOP 01]</div>
+                <div class="image-placeholder">[DYE WORKSHOP 02]</div>
+            </div>
+            <p class="content-text">
+                Natural dyes create colors that are impossible to replicate synthetically. They have depth, variation, and character that develops beautifully over time. Each garment is unique, with subtle variations that tell the story of its creation.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>12</span>
+            </div>
+        </div>
+
+        <!-- Page 13: Our Impact -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Seven</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Impact</span>
+                </div>
+                <h2 class="chapter-title">Our Impact</h2>
+            </div>
+            <p class="content-text">
+                Sustainability isn't just about materials - it's about measuring our impact and continuously improving. Here's how we're making a difference.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Organic Materials</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Plastic Packaging</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">87%</div>
+                    <div class="stat-label">Water Reduction</div>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2,400</div>
+                    <div class="stat-label">Artisans Supported</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Partner Communities</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Net Zero</div>
+                    <div class="stat-label">Carbon Emissions</div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p>Every garment we make represents a choice - for people, for planet, for a better future. Thank you for choosing Botanica.</p>
+                <cite>- The Botanica Team</cite>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>13</span>
+            </div>
+        </div>
+
+        <!-- Page 14: Impact Continued -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Seven</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Impact</span>
+                </div>
+                <h2 class="chapter-title">Circular Fashion</h2>
+            </div>
+            <p class="content-text">
+                We believe in fashion that lasts - and when it finally reaches the end of its life, we ensure it doesn't end up in a landfill. Our circular program gives every Botanica garment a second life.
+            </p>
+            <div class="feature-box">
+                <h4>Repair Program</h4>
+                <p>Free repairs for life. Send us your worn Botanica pieces and our artisans will restore them to like-new condition. Buttons replaced, seams reinforced, love renewed.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Take Back Scheme</h4>
+                <p>Return any Botanica garment for 20% off your next purchase. We'll repair and resell through our vintage collection, or responsibly recycle materials.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Compostable Packaging</h4>
+                <p>All our packaging is 100% compostable. Tissue paper from recycled fibers, boxes from FSC-certified sources, and plant-based mailers that return to the earth.</p>
+            </div>
+            <div class="image-placeholder image-full">[CIRCULAR PROGRAM IMAGE]</div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>14</span>
+            </div>
+        </div>
+
+        <!-- Page 15: Artisan Stories -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Eight</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">People</span>
+                </div>
+                <h2 class="chapter-title">Artisan Stories</h2>
+            </div>
+            <div class="two-column">
+                <div>
+                    <div class="image-placeholder" style="min-height: 200px;">[ARTISAN PORTRAIT 01]</div>
+                    <div class="product-card" style="margin-top: 20px;">
+                        <h4>Priya Sharma</h4>
+                        <p>Master weaver from Gujarat. Priya has been weaving organic cotton for 25 years. Her cooperative employs 45 women, providing fair wages and flexible hours.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-placeholder" style="min-height: 200px;">[ARTISAN PORTRAIT 02]</div>
+                    <div class="product-card" style="margin-top: 20px;">
+                        <h4>Yuki Tanaka</h4>
+                        <p>Natural dye master from Kyoto. Yuki uses techniques unchanged for 400 years. Each batch of indigo takes three months to ferment to perfection.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="content-text">
+                Behind every Botanica garment are skilled artisans preserving traditional crafts. We pay fair wages, provide safe working conditions, and invest in community development programs. When you buy Botanica, you support livelihoods around the world.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>15</span>
+            </div>
+        </div>
+
+        <!-- Page 16: More Artisan Stories -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Eight</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">People</span>
+                </div>
+                <h2 class="chapter-title">More Stories</h2>
+            </div>
+            <div class="two-column">
+                <div>
+                    <div class="image-placeholder" style="min-height: 200px;">[ARTISAN PORTRAIT 03]</div>
+                    <div class="product-card" style="margin-top: 20px;">
+                        <h4>Maria Fernandes</h4>
+                        <p>Seamstress from Porto. Maria specializes in hand-finishing details that give Botanica garments their distinctive quality. 30 years of expertise in every stitch.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-placeholder" style="min-height: 200px;">[ARTISAN PORTRAIT 04]</div>
+                    <div class="product-card" style="margin-top: 20px;">
+                        <h4>Jean-Pierre Dubois</h4>
+                        <p>Linen weaver from Belgium. His family has operated the same mill for four generations. Jean-Pierre's linen is prized for its exceptional softness.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p>Our artisans aren't just suppliers - they're partners. We visit regularly, share profits fairly, and invest in their communities. Fashion should lift everyone it touches.</p>
+                <cite>- Iris Chen, Founder</cite>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>16</span>
+            </div>
+        </div>
+
+        <!-- Page 17: Timeline -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Nine</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">History</span>
+                </div>
+                <h2 class="chapter-title">Our Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">2018</span>
+                    <h4 class="timeline-title">Seeds of an Idea</h4>
+                    <p class="timeline-text">Botanica was founded with a vision to create fashion that honors nature. First collection of 12 pieces launched at a local farmers market.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2019</span>
+                    <h4 class="timeline-title">First Stockist</h4>
+                    <p class="timeline-text">Liberty London became our first major stockist, bringing Botanica to an international audience.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2020</span>
+                    <h4 class="timeline-title">Artisan Partnerships</h4>
+                    <p class="timeline-text">Established direct partnerships with cooperatives in India, Japan, and Portugal. 100% supply chain transparency achieved.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2022</span>
+                    <h4 class="timeline-title">B Corp Certified</h4>
+                    <p class="timeline-text">Achieved B Corporation certification, joining a community of businesses meeting the highest standards of social and environmental performance.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2024</span>
+                    <h4 class="timeline-title">Carbon Neutral</h4>
+                    <p class="timeline-text">Achieved carbon neutrality across all operations and supply chain. Circular program launched.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2025</span>
+                    <h4 class="timeline-title">Spring Awakening</h4>
+                    <p class="timeline-text">Our most ambitious collection yet, featuring 100% natural dyes and compostable packaging.</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>17</span>
+            </div>
+        </div>
+
+        <!-- Page 18: Styling Guide -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Ten</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Styling</span>
+                </div>
+                <h2 class="chapter-title">Styling Guide</h2>
+            </div>
+            <p class="content-text">
+                Botanica pieces are designed to work together and with items you already own. Our capsule approach means fewer pieces, more possibilities. Here's how to style our key looks.
+            </p>
+            <div class="two-column">
+                <div>
+                    <div class="image-placeholder">[DAY LOOK]</div>
+                    <div class="product-card" style="margin-top: 15px;">
+                        <h4>Daytime Garden</h4>
+                        <p>Garden Dress + Linen Blazer + Canvas Tote. Perfect for weekend markets, gallery visits, or outdoor brunches.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-placeholder">[EVENING LOOK]</div>
+                    <div class="product-card" style="margin-top: 15px;">
+                        <h4>Evening Botanical</h4>
+                        <p>Garden Dress + Statement Earrings + Leather Sandals. The same dress transformed for dinner or special occasions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-box">
+                <h4>The 5-Piece Wardrobe</h4>
+                <p>One Garden Dress + One Linen Blazer + One Everyday Trouser + One Organic Tee + One Silk Scarf = 15+ unique outfits. Sustainable fashion means buying less and wearing more.</p>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>18</span>
+            </div>
+        </div>
+
+        <!-- Page 19: Styling Continued -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Ten</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Styling</span>
+                </div>
+                <h2 class="chapter-title">Seasonal Transitions</h2>
+            </div>
+            <p class="content-text">
+                Our pieces are designed to transition between seasons. Here's how to extend the life of your spring wardrobe into fall and beyond.
+            </p>
+            <div class="nature-grid">
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Layer</h4>
+                    <p>Add knits under blazers for warmth</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Accessorize</h4>
+                    <p>Silk scarves add color and warmth</p>
+                </div>
+                <div class="nature-item">
+                    <div class="nature-icon"></div>
+                    <h4>Mix</h4>
+                    <p>Combine seasons for unique looks</p>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div class="image-placeholder">[SPRING LOOK]</div>
+                <div class="image-placeholder">[FALL ADAPTATION]</div>
+            </div>
+            <p class="content-text">
+                The same Garden Dress works in spring with sandals and in autumn with boots and a cozy cardigan. Natural fibers like linen and cotton breathe in summer and layer beautifully in cooler months.
+            </p>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>19</span>
+            </div>
+        </div>
+
+        <!-- Page 20: Size Guide -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Eleven</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Fit</span>
+                </div>
+                <h2 class="chapter-title">Size Guide</h2>
+            </div>
+            <p class="content-text">
+                Our garments are designed with a relaxed, inclusive fit. We use an extended size range and recommend sizing for your true measurements. Our styling team is available to help you find your perfect fit.
+            </p>
+            <table class="size-chart">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>XS</th>
+                        <th>S</th>
+                        <th>M</th>
+                        <th>L</th>
+                        <th>XL</th>
+                        <th>XXL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bust (cm)</td>
+                        <td>80-84</td>
+                        <td>84-88</td>
+                        <td>88-94</td>
+                        <td>94-100</td>
+                        <td>100-108</td>
+                        <td>108-116</td>
+                    </tr>
+                    <tr>
+                        <td>Waist (cm)</td>
+                        <td>60-64</td>
+                        <td>64-68</td>
+                        <td>68-74</td>
+                        <td>74-80</td>
+                        <td>80-88</td>
+                        <td>88-96</td>
+                    </tr>
+                    <tr>
+                        <td>Hip (cm)</td>
+                        <td>86-90</td>
+                        <td>90-94</td>
+                        <td>94-100</td>
+                        <td>100-106</td>
+                        <td>106-114</td>
+                        <td>114-122</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="feature-box">
+                <h4>Virtual Fitting</h4>
+                <p>Not sure of your size? Book a free virtual fitting with our styling team. We'll help you find the perfect fit based on your measurements and style preferences.</p>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>20</span>
+            </div>
+        </div>
+
+        <!-- Page 21: Care Guide -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Twelve</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Care</span>
+                </div>
+                <h2 class="chapter-title">Care Guide</h2>
+            </div>
+            <p class="content-text">
+                Proper care extends the life of your garments and maintains their beauty. Natural fibers require gentle handling but reward you with years of wear.
+            </p>
+            <div class="feature-box">
+                <h4>Organic Cotton</h4>
+                <p>Machine wash cold, gentle cycle. Air dry when possible. Iron on medium heat. Natural dyes may soften over time - this is part of their character.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Belgian Linen</h4>
+                <p>Machine wash warm. Tumble dry low or air dry. Embrace the natural wrinkles - they're part of linen's charm. Iron slightly damp for crisp finish if desired.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Peace Silk</h4>
+                <p>Hand wash cold or dry clean. Lay flat to dry away from direct sunlight. Steam or iron on low heat. Store folded in breathable cotton bags.</p>
+            </div>
+            <div class="feature-box">
+                <h4>Recycled Wool</h4>
+                <p>Dry clean or hand wash cold with wool-specific detergent. Never wring. Lay flat to dry. Store with natural cedar to deter moths.</p>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>21</span>
+            </div>
+        </div>
+
+        <!-- Page 22: Campaign Image -->
+        <div class="page full-image-page">
+            <span class="caption">CAMPAIGN IMAGE 01 - THE GREENHOUSE</span>
+        </div>
+
+        <!-- Page 23: Campaign Image -->
+        <div class="page full-image-page" style="background: linear-gradient(135deg, var(--sage) 0%, var(--green-light) 100%);">
+            <span class="caption">CAMPAIGN IMAGE 02 - MORNING DEW</span>
+        </div>
+
+        <!-- Page 24: Stockists -->
+        <div class="page content-page">
+            <div class="page-header">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item">Chapter Fourteen</span>
+                    <div class="breadcrumb-divider"></div>
+                    <span class="breadcrumb-item">Stockists</span>
+                </div>
+                <h2 class="chapter-title">Where to Find Us</h2>
+            </div>
+            <p class="content-text">
+                Shop Botanica online at botanica.com or visit one of our select retail partners around the world.
+            </p>
+            <div class="two-column">
+                <div class="product-card">
+                    <h4>Europe</h4>
+                    <p>Liberty London, UK<br>Le Bon Marche, Paris<br>KaDeWe, Berlin<br>La Rinascente, Milan<br>De Bijenkorf, Amsterdam</p>
+                </div>
+                <div class="product-card">
+                    <h4>North America</h4>
+                    <p>Nordstrom Select<br>Holt Renfrew, Canada<br>The Line, LA<br>Reformation, NYC<br>Goop, Online</p>
+                </div>
+                <div class="product-card">
+                    <h4>Asia Pacific</h4>
+                    <p>Lane Crawford, HK<br>Isetan, Tokyo<br>David Jones, Sydney<br>Tangs, Singapore</p>
+                </div>
+                <div class="product-card">
+                    <h4>Flagship Store</h4>
+                    <p>Botanica House<br>42 Redchurch Street<br>London E2 7DP<br>Open Daily 10am-7pm</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="footer-logo">BOTANICA</span>
+                <span>24</span>
+            </div>
+        </div>
+
+        <!-- Page 25: Back Cover -->
+        <div class="page back-cover">
+            <div class="back-logo">BOTANICA</div>
+            <p class="back-tagline">NATURE INSPIRED FASHION</p>
+            <div class="social-links">
+                <a href="#">@botanica</a>
+                <a href="#">botanica.com</a>
+                <a href="#">hello@botanica.com</a>
+            </div>
+            <p style="color: var(--sage); font-size: 11px; margin-top: 60px; opacity: 0.7;">
+                © 2025 Botanica. All rights reserved.<br>
+                Printed on 100% recycled paper with vegetable-based inks.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

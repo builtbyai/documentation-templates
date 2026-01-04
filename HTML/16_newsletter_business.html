@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quarterly - Business Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --gold: #C9A962;
+            --cream: #FAF8F5;
+            --white: #FFFFFF;
+            --gray-100: #F5F5F5;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --accent-green: #059669;
+            --accent-red: #DC2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* Cover */
+        .cover {
+            background: var(--navy);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-header {
+            padding: 20mm 25mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .masthead {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .masthead-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: var(--navy);
+        }
+
+        .masthead-text {
+            color: var(--white);
+        }
+
+        .masthead-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+        }
+
+        .masthead-subtitle {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+        }
+
+        .cover-edition {
+            text-align: right;
+            color: var(--gray-400);
+            font-size: 11px;
+        }
+
+        .cover-edition strong {
+            display: block;
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .cover-main {
+            flex: 1;
+            padding: 30mm 25mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .cover-headline {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .cover-summary {
+            font-size: 14px;
+            color: var(--gray-400);
+            max-width: 450px;
+            line-height: 1.7;
+        }
+
+        .cover-toc {
+            padding: 15mm 25mm;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .toc-title {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .toc-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .toc-item {
+            color: var(--white);
+        }
+
+        .toc-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .toc-name {
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* Interior */
+        .interior {
+            background: var(--white);
+            padding: 20mm 25mm;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gray-100);
+            margin-bottom: 25px;
+        }
+
+        .page-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 24px;
+            height: 24px;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 14px;
+            color: var(--gold);
+        }
+
+        .header-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .page-header-right {
+            font-size: 10px;
+            color: var(--gray-400);
+        }
+
+        /* Article Styles */
+        .article {
+            margin-bottom: 40px;
+        }
+
+        .article-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .article-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            font-size: 11px;
+            color: var(--gray-400);
+            margin-bottom: 20px;
+        }
+
+        .article-text {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--gray-600);
+        }
+
+        .article-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            background: var(--cream);
+            padding: 25px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .stat-value.up { color: var(--accent-green); }
+        .stat-value.down { color: var(--accent-red); }
+
+        .stat-change {
+            font-size: 10px;
+            color: var(--gray-400);
+            margin-top: 3px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-600);
+            margin-top: 5px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            border-left: 3px solid var(--gold);
+            padding: 20px 25px;
+            margin: 25px 0;
+            background: var(--cream);
+        }
+
+        .quote-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--navy);
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 12px;
+        }
+
+        /* Two Column */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11px;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 2px solid var(--navy);
+            font-weight: 600;
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+
+        .data-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .data-table tr:hover {
+            background: var(--cream);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--navy);
+            color: var(--white);
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .highlight-title {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .highlight-content {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        /* Sidebar */
+        .sidebar-box {
+            background: var(--cream);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--gray-400);
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list li {
+            padding: 8px 0;
+            font-size: 11px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sidebar-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 25mm;
+            right: 25mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            color: var(--gray-400);
+            padding-top: 10px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        /* Chart Placeholder */
+        .chart-placeholder {
+            background: var(--cream);
+            height: 180px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--gray-400);
+        }
+
+        /* Back Page */
+        .back-page {
+            background: var(--navy);
+            padding: 30mm 25mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 297mm;
+        }
+
+        .back-message {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .back-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            color: var(--navy);
+        }
+
+        .back-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .back-subtitle {
+            font-size: 13px;
+            color: var(--gray-400);
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .back-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-footer {
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 11px;
+        }
+
+        .back-footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div class="page cover">
+        <div class="cover-header">
+            <div class="masthead">
+                <div class="masthead-logo">Q</div>
+                <div class="masthead-text">
+                    <div class="masthead-title">The Quarterly</div>
+                    <div class="masthead-subtitle">Business & Investment Insights</div>
+                </div>
+            </div>
+            <div class="cover-edition">
+                <strong>Q4 2024</strong>
+                Issue 47 | December
+            </div>
+        </div>
+
+        <div class="cover-main">
+            <p class="cover-label">Feature Story</p>
+            <h1 class="cover-headline">The AI Revolution:<br>Separating Signal<br>from Noise</h1>
+            <p class="cover-summary">As artificial intelligence reshapes every industry, we examine which companies are truly positioned to capture value - and which are riding the hype. Plus: 2025 market outlook, emerging market opportunities, and portfolio strategies for uncertain times.</p>
+        </div>
+
+        <div class="cover-toc">
+            <p class="toc-title">In This Issue</p>
+            <div class="toc-items">
+                <div class="toc-item">
+                    <div class="toc-number">01</div>
+                    <div class="toc-name">AI Investment Thesis</div>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number">02</div>
+                    <div class="toc-name">Market Outlook 2025</div>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number">03</div>
+                    <div class="toc-name">Emerging Markets Deep Dive</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article 1 -->
+    <div class="page interior">
+        <div class="page-header">
+            <div class="page-header-left">
+                <div class="header-logo">Q</div>
+                <span class="header-title">The Quarterly</span>
+            </div>
+            <div class="page-header-right">Q4 2024 | Page 3</div>
+        </div>
+
+        <div class="article">
+            <p class="article-label">Cover Story</p>
+            <h2 class="article-title">The AI Investment Thesis: Finding Value in a Crowded Market</h2>
+            <p class="article-meta">By Sarah Mitchell, Chief Investment Strategist | 8 min read</p>
+
+            <div class="article-text">
+                <p>The artificial intelligence boom has created a familiar pattern in financial markets: initial euphoria, rapid capital deployment, and inevitable questions about valuations. As we close 2024, discerning investors face a critical question - where does genuine opportunity lie amid the noise?</p>
+
+                <p>Our analysis suggests the market is in a "picks and shovels" phase, where infrastructure providers and enabling technologies may offer better risk-adjusted returns than consumer-facing applications. The companies building the foundation - cloud computing, semiconductor design, and data management - possess structural advantages that pure-play AI startups cannot easily replicate.</p>
+            </div>
+
+            <div class="stats-banner">
+                <div class="stat-item">
+                    <div class="stat-value">$184B</div>
+                    <div class="stat-change">+47% YoY</div>
+                    <div class="stat-label">AI Spending 2024</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3.2x</div>
+                    <div class="stat-change">vs 2.1x sector avg</div>
+                    <div class="stat-label">Revenue Multiple</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value up">+62%</div>
+                    <div class="stat-change">2024 returns</div>
+                    <div class="stat-label">AI Index</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$2.4T</div>
+                    <div class="stat-change">by 2030</div>
+                    <div class="stat-label">Market Projection</div>
+                </div>
+            </div>
+
+            <div class="article-text">
+                <p>The concentration of returns in a handful of large-cap technology names masks a more nuanced story. While the "Magnificent Seven" have captured headlines, our research identifies several mid-cap companies with superior growth trajectories and more reasonable valuations.</p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">"The most profitable AI investments over the next decade will likely be in companies we don't yet associate with artificial intelligence."</p>
+                <p class="quote-author">- James Chen, Partner at Sequoia Capital</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>The Quarterly | Q4 2024</span>
+            <span>Page 3</span>
+        </div>
+    </div>
+
+    <!-- Article 2 - Market Data -->
+    <div class="page interior">
+        <div class="page-header">
+            <div class="page-header-left">
+                <div class="header-logo">Q</div>
+                <span class="header-title">The Quarterly</span>
+            </div>
+            <div class="page-header-right">Q4 2024 | Page 7</div>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <div class="article">
+                    <p class="article-label">Market Outlook</p>
+                    <h2 class="article-title">2025: Navigating Cross Currents</h2>
+
+                    <div class="article-text">
+                        <p>The incoming year presents investors with a complex mosaic of opportunities and risks. Moderating inflation, resilient employment, and corporate earnings growth provide fundamental support, while geopolitical tensions and policy uncertainty demand tactical flexibility.</p>
+
+                        <p>Our base case assumes a "soft landing" scenario with GDP growth moderating to 2.1% and the Federal Reserve executing two rate cuts by mid-year. However, we assign meaningful probability to both upside and downside scenarios.</p>
+                    </div>
+
+                    <div class="chart-placeholder">[Economic Forecast Chart]</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidebar-box">
+                    <h4 class="sidebar-title">Sector Allocation</h4>
+                    <ul class="sidebar-list">
+                        <li><span>Technology</span><strong>Overweight</strong></li>
+                        <li><span>Healthcare</span><strong>Overweight</strong></li>
+                        <li><span>Financials</span><strong>Neutral</strong></li>
+                        <li><span>Consumer Disc.</span><strong>Neutral</strong></li>
+                        <li><span>Energy</span><strong>Underweight</strong></li>
+                        <li><span>Utilities</span><strong>Underweight</strong></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box">
+                    <h4 class="sidebar-title">Key Metrics</h4>
+                    <table class="data-table" style="margin: 0;">
+                        <tr>
+                            <td>S&P 500 Target</td>
+                            <td><strong>5,400</strong></td>
+                        </tr>
+                        <tr>
+                            <td>10Y Treasury</td>
+                            <td><strong>3.75%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>USD/EUR</td>
+                            <td><strong>1.12</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Gold</td>
+                            <td><strong>$2,150</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <h4 class="highlight-title">Key Conviction</h4>
+                    <p class="highlight-content">Quality over quantity: Focus on companies with strong balance sheets and pricing power.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>The Quarterly | Q4 2024</span>
+            <span>Page 7</span>
+        </div>
+    </div>
+
+    <!-- Back Page -->
+    <div class="page back-page">
+        <div class="back-message">
+            <div class="back-logo">Q</div>
+            <h2 class="back-title">Stay Informed</h2>
+            <p class="back-subtitle">The Quarterly delivers institutional-grade investment research and analysis directly to your inbox. Join 50,000+ subscribers who trust us for actionable insights.</p>
+            <div class="back-cta">Subscribe Free</div>
+        </div>
+
+        <div class="back-footer">
+            <p>The Quarterly | Est. 2012</p>
+            <p>www.thequarterly.com | research@thequarterly.com</p>
+            <p>New York | London | Singapore | Hong Kong</p>
+        </div>
+    </div>
+
+</body>
+</html>

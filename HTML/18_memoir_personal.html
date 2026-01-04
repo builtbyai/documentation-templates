@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Road Back Home - A Memoir</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sepia: #F5F0E6;
+            --parchment: #FAF8F3;
+            --ink: #2C2418;
+            --faded: #8B7355;
+            --accent: #9B4D3A;
+            --muted: #6B5D4D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background: #D5CFC4;
+            color: var(--ink);
+            line-height: 1.8;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        /* Cover */
+        .cover {
+            background: var(--sepia);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 297mm;
+        }
+
+        .cover-photo-area {
+            height: 55%;
+            background: linear-gradient(135deg, var(--faded), var(--muted));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .cover-photo-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cover-text-area {
+            flex: 1;
+            padding: 35px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .cover-author {
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--faded);
+            margin-bottom: 20px;
+        }
+
+        .cover-title {
+            font-family: 'Lora', serif;
+            font-size: 42px;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+
+        .cover-subtitle {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--muted);
+            margin-top: 15px;
+        }
+
+        .cover-ornament {
+            font-size: 18px;
+            color: var(--accent);
+            margin-top: 30px;
+            letter-spacing: 12px;
+        }
+
+        /* Interior */
+        .interior {
+            background: var(--parchment);
+            padding: 25mm 35mm;
+        }
+
+        /* Running Header */
+        .running-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-style: italic;
+            color: var(--faded);
+            margin-bottom: 20mm;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        /* Chapter Opener */
+        .chapter-opener {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .chapter-number {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--faded);
+        }
+
+        .chapter-title {
+            font-family: 'Lora', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--ink);
+            margin: 15px 0;
+        }
+
+        .chapter-epigraph {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--muted);
+            max-width: 350px;
+            margin: 20px auto;
+            line-height: 1.7;
+        }
+
+        .chapter-ornament {
+            color: var(--accent);
+            font-size: 16px;
+            letter-spacing: 8px;
+            margin-top: 20px;
+        }
+
+        /* Body Text */
+        .body-text {
+            font-size: 13px;
+            line-height: 1.9;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .body-text p {
+            margin-bottom: 1.2em;
+            text-indent: 1.5em;
+        }
+
+        .body-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: 'Lora', serif;
+            font-size: 68px;
+            line-height: 0.75;
+            padding-right: 10px;
+            padding-top: 8px;
+            color: var(--accent);
+        }
+
+        /* Section Break */
+        .section-break {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--faded);
+            font-size: 14px;
+            letter-spacing: 10px;
+        }
+
+        /* Block Quote */
+        .memoir-quote {
+            margin: 30px 0;
+            padding: 0 30px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .memoir-quote p {
+            font-style: italic;
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            text-indent: 0 !important;
+        }
+
+        /* Photo Insert */
+        .photo-insert {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .photo-placeholder {
+            background: var(--sepia);
+            padding: 15px;
+            display: inline-block;
+        }
+
+        .photo-inner {
+            width: 280px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--faded), var(--muted));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .photo-caption {
+            font-style: italic;
+            font-size: 11px;
+            color: var(--faded);
+            margin-top: 15px;
+        }
+
+        /* Page Number */
+        .page-number {
+            position: absolute;
+            bottom: 20mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-style: italic;
+            font-size: 11px;
+            color: var(--faded);
+        }
+
+        /* Dedication Page */
+        .dedication-page {
+            background: var(--parchment);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 297mm;
+            text-align: center;
+            padding: 40mm;
+        }
+
+        .dedication-content {
+            max-width: 300px;
+        }
+
+        .dedication-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--faded);
+            margin-bottom: 30px;
+        }
+
+        .dedication-text {
+            font-style: italic;
+            font-size: 16px;
+            color: var(--ink);
+            line-height: 1.8;
+        }
+
+        .dedication-ornament {
+            color: var(--accent);
+            font-size: 14px;
+            margin-top: 30px;
+            letter-spacing: 8px;
+        }
+
+        /* End Page */
+        .end-page {
+            background: var(--sepia);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 297mm;
+            text-align: center;
+            padding: 40mm;
+        }
+
+        .end-title {
+            font-family: 'Lora', serif;
+            font-size: 28px;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+
+        .end-subtitle {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+
+        .author-bio {
+            max-width: 400px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--faded);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .publisher-info {
+            font-size: 10px;
+            color: var(--faded);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div class="page cover">
+        <div class="cover-photo-area">
+            <div class="cover-photo-border"></div>
+            <span>[Vintage Family Photograph]</span>
+        </div>
+        <div class="cover-text-area">
+            <p class="cover-author">Margaret Sullivan</p>
+            <h1 class="cover-title">The Road<br>Back Home</h1>
+            <p class="cover-subtitle">A Memoir</p>
+            <div class="cover-ornament">~ * ~</div>
+        </div>
+    </div>
+
+    <!-- Dedication -->
+    <div class="page dedication-page">
+        <div class="dedication-content">
+            <p class="dedication-label">For</p>
+            <p class="dedication-text">My mother, who taught me that home is not a place but a feeling. And for everyone who has ever lost their way and found it again.</p>
+            <div class="dedication-ornament">~</div>
+        </div>
+    </div>
+
+    <!-- Chapter One -->
+    <div class="page interior">
+        <div class="running-header">
+            <span>The Road Back Home</span>
+            <span>Margaret Sullivan</span>
+        </div>
+
+        <div class="chapter-opener">
+            <p class="chapter-number">Chapter One</p>
+            <h2 class="chapter-title">The House on Maple Street</h2>
+            <p class="chapter-epigraph">"We don't remember days, we remember moments."<br>- Cesare Pavese</p>
+            <div class="chapter-ornament">~ * ~</div>
+        </div>
+
+        <div class="body-text">
+            <p><span class="drop-cap">T</span>he house still stood at the end of Maple Street, though everything around it had changed. Where Mr. Henderson's cornfield once stretched toward the horizon, a strip mall now squatted, its parking lot perpetually half-empty. The old oak tree where I carved my initials at seven was gone, replaced by a utility pole. But the house remained, smaller than I remembered, its white paint faded to the color of old bone.</p>
+
+            <p>I had driven fourteen hours to stand on this sidewalk, and now that I was here, my feet refused to move. The new owners had planted roses where my mother's vegetable garden once flourished. They'd added a deck to the back, visible from where I stood. These were good changes, improvements even. But they felt like erasures.</p>
+
+            <p>Memory is a strange cartographer. It maps not what was, but what mattered. Standing there in the autumn chill, I could smell my father's pipe tobacco, though he'd been gone fifteen years. I could hear my brother's basketball bouncing in the driveway, though he lived in Seattle now and we spoke twice a year at most. The past isn't another country; it's a parallel universe, always present, separated from us by the thinnest membrane of time.</p>
+
+            <p>I had come back to understand something. To find the thread that connected the girl who grew up in this house to the woman I had become. Somewhere between these walls and my current life, I had misplaced something essential. I couldn't name it, but I could feel its absence the way you feel a missing tooth with your tongue.</p>
+        </div>
+
+        <div class="section-break">* * *</div>
+
+        <div class="body-text">
+            <p>The last time I saw this house, I was eighteen and certain I would never look back. College waited in Boston, a scholarship to study literature, a chance to become someone new. My mother stood in that doorway, waving until I turned the corner, and I didn't turn around because I thought I would have forever to return.</p>
+        </div>
+
+        <span class="page-number">1</span>
+    </div>
+
+    <!-- Chapter One Continued -->
+    <div class="page interior">
+        <div class="running-header">
+            <span>Chapter One</span>
+            <span>The House on Maple Street</span>
+        </div>
+
+        <div class="body-text">
+            <p>The years had a way of slipping past while I was looking elsewhere. Graduate school, then marriage, then the divorce that taught me how little I understood about love. A career that kept me moving from city to city, always arriving somewhere new, never quite settling. I had become an expert at forward motion, at the clean break, at starting over.</p>
+
+            <p>But grief, I was learning, doesn't follow the timeline we assign it. When my mother died the previous spring, the loss hit me not as a wave but as an undertow, pulling me back to places I thought I'd left behind. I found myself remembering not the woman she became but the mother she was when I was small - the way she hummed while cooking, the smell of her hand lotion, the sound of her voice reading to me in the dark.</p>
+
+            <p>That's why I had come back. Not to the funeral - I'd managed that, barely, surrounded by cousins I hadn't seen in decades, in a church that held too many memories. I came back now, six months later, because I needed to understand where I came from before I could figure out where to go.</p>
+        </div>
+
+        <div class="photo-insert">
+            <div class="photo-placeholder">
+                <div class="photo-inner">[Family Photo, 1985]</div>
+            </div>
+            <p class="photo-caption">The author with her mother and brother, Easter Sunday, 1985</p>
+        </div>
+
+        <div class="memoir-quote">
+            <p>Home, I was beginning to understand, isn't a place you can return to. It's a place you carry with you, rebuilt daily from memory and longing, from the stories we tell ourselves about who we were and who we're becoming.</p>
+        </div>
+
+        <div class="body-text">
+            <p>A woman emerged from the house - the new owner, I assumed. She looked at me with the wariness that strangers deserve, and I realized I had been standing on the sidewalk for nearly an hour. I raised my hand in apology, in greeting, in farewell to a past she knew nothing about. Then I walked back to my car and drove away.</p>
+
+            <p>But I wasn't leaving. Not yet. I had come to this town to find something, and I wouldn't stop searching until I understood what it was.</p>
+        </div>
+
+        <span class="page-number">2</span>
+    </div>
+
+    <!-- About the Author -->
+    <div class="page end-page">
+        <div class="author-photo">[Author Photo]</div>
+        <h2 class="end-title">About the Author</h2>
+        <p class="end-subtitle">Margaret Sullivan</p>
+
+        <p class="author-bio">Margaret Sullivan is the author of three novels and a collection of essays. Her work has appeared in The New Yorker, The Atlantic, and The Paris Review. She holds an MFA from the Iowa Writers' Workshop and has taught creative writing at universities across the country. The Road Back Home is her first memoir. She lives in Vermont with her two dogs and a garden that, like memory, requires constant tending.</p>
+
+        <div class="publisher-info">
+            <p>First published 2024</p>
+            <p>Riverhead Books | New York</p>
+            <p>ISBN 978-0-00-000000-0</p>
+        </div>
+    </div>
+
+</body>
+</html>

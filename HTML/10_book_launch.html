@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Garden - Novel Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight-blue: #1A1B3A;
+            --twilight: #2D2E5E;
+            --moonlight: #E8E8F0;
+            --gold-accent: #D4A574;
+            --silver: #C0C0C0;
+            --cream: #FAF8F5;
+            --text-dark: #2C2C2C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: #E5E5E5;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--twilight) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40mm 25mm;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 160px 120px, white, transparent),
+                radial-gradient(2px 2px at 200px 60px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 250px 150px, white, transparent),
+                radial-gradient(2px 2px at 300px 100px, rgba(255,255,255,0.5), transparent);
+            background-size: 350px 200px;
+            animation: twinkle 5s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-name-cover {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 40px;
+        }
+
+        .book-title {
+            font-family: 'Tangerine', cursive;
+            font-size: 72px;
+            color: var(--moonlight);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .book-subtitle {
+            font-family: 'Crimson Pro', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--silver);
+            margin-bottom: 60px;
+        }
+
+        .moon-decoration {
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--gold-accent);
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .moon-decoration::before {
+            content: '';
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, var(--moonlight), var(--silver));
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(232, 232, 240, 0.3);
+        }
+
+        .tagline {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+        }
+
+        /* Interior Pages */
+        .interior-page {
+            background: var(--cream);
+            padding: 25mm 30mm;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 20mm;
+        }
+
+        .chapter-number {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .chapter-title {
+            font-family: 'Tangerine', cursive;
+            font-size: 48px;
+            color: var(--midnight-blue);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .chapter-ornament {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--gold-accent);
+            font-size: 24px;
+            letter-spacing: 10px;
+        }
+
+        .story-text {
+            font-size: 13px;
+            line-height: 1.9;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .story-text p {
+            margin-bottom: 1.2em;
+            text-indent: 2em;
+        }
+
+        .story-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .drop-cap-fancy {
+            float: left;
+            font-family: 'Tangerine', cursive;
+            font-size: 80px;
+            line-height: 0.65;
+            padding-right: 10px;
+            padding-top: 8px;
+            color: var(--midnight-blue);
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            color: var(--silver);
+        }
+
+        /* Praise Page */
+        .praise-page {
+            background: var(--cream);
+            padding: 25mm 30mm;
+        }
+
+        .praise-title {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .praise-quote {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 0 20px;
+        }
+
+        .praise-quote p {
+            font-family: 'Crimson Pro', serif;
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .praise-source {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+        }
+
+        .divider-stars {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--gold-accent);
+            font-size: 16px;
+            letter-spacing: 15px;
+        }
+
+        /* Author Page */
+        .author-page {
+            background: var(--cream);
+            padding: 25mm 30mm;
+        }
+
+        .author-section {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .author-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--silver), var(--moonlight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--text-dark);
+            border: 1px solid var(--silver);
+        }
+
+        .author-bio h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .author-bio h2 {
+            font-family: 'Tangerine', cursive;
+            font-size: 42px;
+            color: var(--midnight-blue);
+            margin-bottom: 20px;
+        }
+
+        .author-bio p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .author-books {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--silver);
+        }
+
+        .author-books h4 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .author-books ul {
+            list-style: none;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .author-books li {
+            margin-bottom: 5px;
+        }
+
+        /* Back Cover */
+        .back-cover {
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--twilight) 100%);
+            padding: 30mm 25mm;
+            position: relative;
+        }
+
+        .back-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .synopsis {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 3px solid var(--gold-accent);
+        }
+
+        .synopsis p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--moonlight);
+            margin-bottom: 15px;
+        }
+
+        .back-quote {
+            text-align: center;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+        }
+
+        .back-quote p {
+            font-family: 'Tangerine', cursive;
+            font-size: 32px;
+            color: var(--moonlight);
+            margin-bottom: 10px;
+        }
+
+        .back-quote span {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+        }
+
+        .book-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            padding: 15px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .info-item span {
+            display: block;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            font-family: 'Crimson Pro', serif;
+            font-size: 14px;
+            color: var(--moonlight);
+        }
+
+        .barcode-area {
+            position: absolute;
+            bottom: 25mm;
+            right: 25mm;
+            text-align: center;
+        }
+
+        .barcode-placeholder {
+            width: 100px;
+            height: 60px;
+            background: white;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: var(--text-dark);
+        }
+
+        .isbn {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 9px;
+            color: var(--silver);
+        }
+
+        .publisher-logo {
+            position: absolute;
+            bottom: 25mm;
+            left: 25mm;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <div class="stars"></div>
+        <div class="cover-content">
+            <p class="author-name-cover">Eleanor Blackwood</p>
+
+            <div class="moon-decoration"></div>
+
+            <h1 class="book-title">The Midnight Garden</h1>
+            <p class="book-subtitle">A Novel of Secrets and Second Chances</p>
+
+            <p class="tagline">Where memories bloom in moonlight</p>
+        </div>
+    </div>
+
+    <!-- Praise Page -->
+    <div class="page praise-page">
+        <h2 class="praise-title">Praise for The Midnight Garden</h2>
+
+        <div class="praise-quote">
+            <p>"A luminous tale that will haunt your dreams. Blackwood has crafted something truly magical - a story that blooms in the darkness and reminds us that hope can take root in the most unexpected places."</p>
+            <span class="praise-source">- The New York Times Book Review</span>
+        </div>
+
+        <div class="divider-stars">* * *</div>
+
+        <div class="praise-quote">
+            <p>"Exquisite prose that reads like poetry. The Midnight Garden is a meditation on loss, love, and the gardens we tend within our hearts. I couldn't put it down."</p>
+            <span class="praise-source">- Bestselling Author Sarah Waters</span>
+        </div>
+
+        <div class="divider-stars">* * *</div>
+
+        <div class="praise-quote">
+            <p>"Blackwood's finest work yet. The characters linger long after the final page, and the garden itself becomes a character you'll never forget. Simply stunning."</p>
+            <span class="praise-source">- Publishers Weekly, Starred Review</span>
+        </div>
+
+        <div class="divider-stars">* * *</div>
+
+        <div class="praise-quote">
+            <p>"A masterpiece of atmospheric fiction. Each chapter unfolds like a night-blooming flower, revealing secrets petal by petal. Essential reading."</p>
+            <span class="praise-source">- Booklist</span>
+        </div>
+
+        <div class="divider-stars">* * *</div>
+
+        <div class="praise-quote">
+            <p>"I was completely transported. The Midnight Garden is the kind of book that makes you believe in magic again."</p>
+            <span class="praise-source">- Oprah Daily</span>
+        </div>
+
+        <span class="page-number">i</span>
+    </div>
+
+    <!-- Chapter One -->
+    <div class="page interior-page">
+        <div class="page-header">
+            <span>The Midnight Garden</span>
+            <span>Eleanor Blackwood</span>
+        </div>
+
+        <p class="chapter-number">Chapter One</p>
+        <h2 class="chapter-title">The Inheritance</h2>
+        <div class="chapter-ornament">~ * ~</div>
+
+        <div class="story-text">
+            <p><span class="drop-cap-fancy">T</span>he letter arrived on a Tuesday, as all life-changing letters do. Clara had always believed that Tuesdays were the universe's way of keeping us humble - not quite the fresh start of Monday, not yet the hump of Wednesday. Just ordinary. Unremarkable. The perfect camouflage for fate.</p>
+
+            <p>She found it tucked between an electricity bill and a catalog for garden supplies she'd never ordered, the envelope thick and cream-colored, bearing a law firm's embossed return address. The handwriting, however, was unmistakably personal. Elegant loops and careful curves that spoke of fountain pens and patience - qualities her grandmother had possessed in abundance.</p>
+
+            <p>Clara's fingers trembled as she broke the wax seal. A wax seal, in this age of email and instant messages. How very like Gran to insist on ceremony even from beyond the grave.</p>
+
+            <p>The letter was brief, as Gran's communications always were. She had believed in economy of words, in letting silence speak where language faltered. But what it contained changed everything.</p>
+
+            <p>"Willowmere is yours now," the attorney's accompanying note explained. "As per your grandmother's wishes, the estate passes to you alone, along with the garden and all its contents. Mrs. Ashworth left specific instructions that only you would understand."</p>
+
+            <p>Only you would understand. The words echoed in Clara's mind as she stood in her cramped apartment kitchen, morning light filtering through windows that hadn't been properly cleaned in months. She hadn't set foot in Willowmere since she was seventeen. Hadn't spoken to Gran in over a decade. Hadn't allowed herself to think about the garden - that impossible, magical garden - since the night everything went wrong.</p>
+
+            <p>Yet somehow, Gran had known. Had always known that Clara would return when the time was right.</p>
+        </div>
+
+        <span class="page-number">1</span>
+    </div>
+
+    <!-- Chapter One Continued -->
+    <div class="page interior-page">
+        <div class="page-header">
+            <span>The Midnight Garden</span>
+            <span>Chapter One</span>
+        </div>
+
+        <div class="story-text">
+            <p>The drive north took seven hours, each mile carrying Clara further from the life she'd carefully constructed and closer to the one she'd abandoned. Her sensible sedan ate up the highway, radio playing songs she didn't hear, mind wandering through memories she'd spent years suppressing.</p>
+
+            <p>She remembered summer nights in Gran's garden, fireflies dancing between the hedgerows, the sweet perfume of jasmine and moonflower filling the air. She remembered the fountain at the garden's heart, its waters silver in the moonlight, and the stories Gran would tell about the generations of Ashworth women who had tended this place.</p>
+
+            <p>"The garden keeps secrets," Gran had once said, her weathered hands pruning a rose bush with practiced ease. "Our secrets, our sorrows, our dreams. We plant them here, and the garden transforms them into something beautiful."</p>
+
+            <p>At seventeen, Clara had thought she understood. At thirty-four, she suspected she hadn't understood anything at all.</p>
+
+            <p>The iron gates of Willowmere appeared as dusk settled over the countryside, their elaborate scrollwork silhouetted against a salmon-pink sky. They stood open, as if expecting her, though the attorney had assured Clara the property had been empty since Gran's passing three months ago.</p>
+
+            <p>The drive curved through an avenue of ancient oaks, their branches intertwining overhead to form a living tunnel. In her memory, this approach had always felt like entering another world - a threshold between the ordinary and the extraordinary. Now, with the evening light turning everything to gold and shadow, that feeling returned with startling intensity.</p>
+
+            <p>And then she saw the house.</p>
+
+            <p>Willowmere stood exactly as she remembered, a Victorian beauty in soft gray stone with white trim and windows that caught the dying light like watchful eyes. But it was what lay beyond the house that made Clara's breath catch in her throat.</p>
+
+            <p>The garden was waiting.</p>
+        </div>
+
+        <span class="page-number">2</span>
+    </div>
+
+    <!-- About the Author -->
+    <div class="page author-page">
+        <div class="author-section">
+            <div class="author-photo">[Author Photo]</div>
+            <div class="author-bio">
+                <h3>About the Author</h3>
+                <h2>Eleanor Blackwood</h2>
+                <p>Eleanor Blackwood grew up in a rambling Victorian house in Cornwall, where her grandmother tended a garden that seemed to hold as many secrets as flowers. Those childhood summers spent among the moonflowers and midnight roses would later inspire her internationally acclaimed fiction.</p>
+
+                <p>After studying literature at Oxford and spending a decade as a journalist in London, Eleanor retreated to the English countryside to write her first novel. The result, "The House at Thornwood," became an instant bestseller and established her as a master of atmospheric literary fiction.</p>
+
+                <p>Her work has been translated into thirty-seven languages and has won numerous awards, including the Women's Prize for Fiction and the Costa Novel Award. Critics have praised her "luminous prose" and her ability to find magic in the everyday.</p>
+
+                <p>Eleanor lives in Devon with her husband, two children, and a garden that grows more mysterious with each passing year. The Midnight Garden is her sixth novel.</p>
+
+                <div class="author-books">
+                    <h4>Also by Eleanor Blackwood</h4>
+                    <ul>
+                        <li>The House at Thornwood</li>
+                        <li>Whispers in the Wisteria</li>
+                        <li>The Lighthouse Keeper's Daughter</li>
+                        <li>All the Colors of Goodbye</li>
+                        <li>The Memory Garden</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <span class="page-number">327</span>
+    </div>
+
+    <!-- Back Cover -->
+    <div class="page back-cover">
+        <div class="stars"></div>
+        <div class="back-content">
+            <div class="synopsis">
+                <p>When Clara Ashworth inherits her estranged grandmother's estate, she returns to Willowmere expecting dusty rooms and painful memories. Instead, she finds a garden that defies explanation - flowers that bloom only by moonlight, paths that seem to shift and change, and secrets planted generations ago that are finally ready to bloom.</p>
+
+                <p>As Clara uncovers the truth about her family and the extraordinary women who came before her, she must confront the tragedy that drove her away and the magic she tried so hard to forget. But some gardens grow wild when left untended, and some secrets, once unearthed, can never be buried again.</p>
+            </div>
+
+            <div class="back-quote">
+                <p>"In gardens and in grief, the most beautiful things grow from what we thought was lost."</p>
+                <span>- From The Midnight Garden</span>
+            </div>
+
+            <div class="book-info-grid">
+                <div class="info-item">
+                    <span>Genre</span>
+                    <strong>Literary Fiction</strong>
+                </div>
+                <div class="info-item">
+                    <span>Pages</span>
+                    <strong>328</strong>
+                </div>
+                <div class="info-item">
+                    <span>Price</span>
+                    <strong>$27.99</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="publisher-logo">Moonlight Press</div>
+
+        <div class="barcode-area">
+            <div class="barcode-placeholder">[Barcode]</div>
+            <span class="isbn">ISBN 978-0-00-000000-0</span>
+        </div>
+    </div>
+
+</body>
+</html>

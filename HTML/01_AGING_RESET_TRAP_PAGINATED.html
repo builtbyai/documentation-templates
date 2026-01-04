@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Aging Reset Trap - Credit Insider Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #F5C518;
+            --yellow-light: #FEF3C7;
+            --blue: #3B82F6;
+            --blue-light: #DBEAFE;
+            --red: #EF4444;
+            --red-light: #FEE2E2;
+            --green: #10B981;
+            --green-light: #D1FAE5;
+            --orange: #F97316;
+            --black: #1a1a1a;
+            --gray-dark: #4a4a4a;
+            --gray: #6b7280;
+            --gray-light: #9ca3af;
+            --gray-border: #e5e5e5;
+            --white: #ffffff;
+            --bg: #f0f0f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .presentation {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Slide Base */
+        .slide {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 60px 80px;
+            margin-bottom: 20px;
+            min-height: 700px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 8px;
+            background: var(--yellow);
+        }
+
+        /* Star Icon */
+        .star-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .star-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--gray-border);
+            margin: 20px 0 40px 0;
+        }
+
+        /* Tagline Pill */
+        .tagline-pill {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .tagline-pill::after {
+            content: '★';
+            position: absolute;
+            right: -25px;
+            top: -8px;
+            font-size: 24px;
+            color: var(--yellow);
+        }
+
+        /* Cover Slide */
+        .slide-cover {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+
+        .cover-left {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        .cover-right {
+            flex: 0.8;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .cover-title {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .cover-title span {
+            display: block;
+            color: var(--red);
+        }
+
+        .cover-desc {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .cover-graphic {
+            position: relative;
+        }
+
+        .graphic-shape {
+            width: 350px;
+            height: 350px;
+            background: var(--black);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .graphic-shape::before {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: var(--yellow);
+        }
+
+        .graphic-shape::after {
+            content: '⚠';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: var(--yellow);
+        }
+
+        /* Branding Footer */
+        .slide-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .brand-sub {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Content Slide */
+        .content-text {
+            font-size: 18px;
+            color: var(--gray-dark);
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        .content-text strong {
+            color: var(--black);
+        }
+
+        /* TOC Items */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .toc-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toc-number-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .toc-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .toc-number.yellow { background: var(--yellow); color: var(--black); }
+        .toc-number.blue { background: var(--blue); }
+        .toc-number.red { background: var(--red); }
+
+        .toc-title-pill {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .toc-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            padding-left: 65px;
+        }
+
+        /* Dark Card */
+        .dark-card {
+            background: var(--black);
+            border-radius: 16px;
+            padding: 30px 40px;
+            color: var(--white);
+            margin: 30px 0;
+        }
+
+        .dark-card-label {
+            color: var(--yellow);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .dark-card-text {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Timeline */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gray-border);
+            z-index: 0;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-year {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 800;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 5px;
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* Step Cards */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .step-card {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: var(--white);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .step-content {
+            font-size: 15px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        /* Comparison Cards */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--gray-border);
+        }
+
+        .comparison-header {
+            padding: 15px 25px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-header.green {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .comparison-header.red {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .comparison-body {
+            padding: 25px;
+        }
+
+        .comparison-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-border);
+            font-size: 14px;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-list .label {
+            color: var(--gray);
+        }
+
+        .comparison-list .value {
+            font-weight: 600;
+        }
+
+        .comparison-list .value.changed {
+            color: var(--red);
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .value-card {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .value-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .value-desc {
+            font-size: 15px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        /* Myth Cards */
+        .myth-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .myth-card {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .myth-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .myth-quote {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .myth-reality {
+            font-size: 14px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        .myth-reality strong {
+            color: var(--black);
+        }
+
+        /* Stats Display */
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        /* Action Steps */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .action-card {
+            background: var(--black);
+            border-radius: 16px;
+            padding: 30px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .action-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 800;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .action-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .action-desc {
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        /* Takeaway Grid */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .takeaway-card {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .takeaway-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--yellow);
+            margin-bottom: 15px;
+        }
+
+        .takeaway-text {
+            font-size: 15px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        .takeaway-text strong {
+            color: var(--black);
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .data-table th {
+            background: var(--black);
+            color: var(--white);
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--gray-light);
+            background: #f9f9f9;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .alert-box.warning {
+            background: var(--red-light);
+            border-left: 4px solid var(--red);
+        }
+
+        .alert-box.success {
+            background: var(--green-light);
+            border-left: 4px solid var(--green);
+        }
+
+        .alert-box.info {
+            background: var(--blue-light);
+            border-left: 4px solid var(--blue);
+        }
+
+        .alert-icon {
+            font-size: 24px;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .alert-text {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Thank You Slide */
+        .thank-you-slide {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .thank-you-title {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-subtitle {
+            font-size: 24px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            font-size: 16px;
+            color: var(--gray-dark);
+        }
+
+        /* Check List */
+        .check-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .check-icon.green {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .check-icon.red {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            background: var(--yellow);
+            color: var(--black);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #e0b015;
+        }
+
+        .nav-btn.next {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .nav-btn.next:hover {
+            background: #f0f0f0;
+        }
+
+        .slide-counter {
+            color: var(--white);
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gray-border);
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--yellow);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide" id="slide1">
+            <div class="slide-cover">
+                <div class="cover-left">
+                    <div class="tagline-pill">Credit Insider Knowledge</div>
+                    <h1 class="cover-title">
+                        The Aging
+                        <span>Reset Trap</span>
+                    </h1>
+                    <p class="cover-desc">
+                        Disputing accurate old negatives forces updates that reset FICO's aging calculation.
+                        This insider knowledge can save you 50-100+ points on your credit score.
+                    </p>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-value">50-100+</div>
+                            <div class="stat-label">Points at Risk</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cover-right">
+                    <div class="cover-graphic">
+                        <div class="graphic-shape"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Contents -->
+        <div class="slide" id="slide2">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">Contents</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number yellow">01</div>
+                        <div class="toc-title-pill">The Mechanism</div>
+                    </div>
+                    <p class="toc-desc">How FICO's aging calculation works and why it matters for your score.</p>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number yellow">02</div>
+                        <div class="toc-title-pill">The Trap</div>
+                    </div>
+                    <p class="toc-desc">What happens when you dispute and trigger the reset mechanism.</p>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number yellow">03</div>
+                        <div class="toc-title-pill">Real Example</div>
+                    </div>
+                    <p class="toc-desc">Before and after comparison of a disputed 4-year-old charge-off.</p>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number blue">04</div>
+                        <div class="toc-title-pill">Key Dates</div>
+                    </div>
+                    <p class="toc-desc">Understanding DOFD vs Last Updated date distinctions.</p>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number blue">05</div>
+                        <div class="toc-title-pill">Strategy</div>
+                    </div>
+                    <p class="toc-desc">When to leave alone vs when disputing might be worth the risk.</p>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number-row">
+                        <div class="toc-number blue">06</div>
+                        <div class="toc-title-pill">Action Steps</div>
+                    </div>
+                    <p class="toc-desc">Practical steps to audit and manage your negative accounts.</p>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Mechanism -->
+        <div class="slide" id="slide3">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">The Mechanism Explained</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <p class="content-text">
+                FICO's algorithm doesn't just record <strong>WHAT</strong> happened - it heavily weights
+                <strong>HOW RECENTLY</strong> it was confirmed. This is the key insight most people miss.
+            </p>
+
+            <div class="dark-card">
+                <div class="dark-card-label">Critical Understanding</div>
+                <div class="dark-card-text">
+                    This recovery happens <strong>AUTOMATICALLY</strong> as long as the creditor isn't actively
+                    updating the account. Time is your ally when it comes to aging negatives.
+                </div>
+            </div>
+
+            <div class="alert-box info">
+                <div class="alert-icon">💡</div>
+                <div class="alert-content">
+                    <div class="alert-title">Why This Matters</div>
+                    <div class="alert-text">
+                        A 4-year-old charge-off that hasn't been updated hurts your score FAR less than
+                        the same charge-off that was just verified yesterday. The information is identical -
+                        only the recency of confirmation differs.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: FICO Timeline -->
+        <div class="slide" id="slide4">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">FICO Aging Recovery Timeline</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 1</div>
+                    <div class="timeline-value">Max</div>
+                    <div class="timeline-label">Fresh Wound</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 2</div>
+                    <div class="timeline-value">~20%</div>
+                    <div class="timeline-label">Recovery</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 3</div>
+                    <div class="timeline-value">~40%</div>
+                    <div class="timeline-label">Recovery</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 4</div>
+                    <div class="timeline-value">~60%</div>
+                    <div class="timeline-label">Recovery</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 5</div>
+                    <div class="timeline-value">~75%</div>
+                    <div class="timeline-label">Recovery</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 6</div>
+                    <div class="timeline-value">~85%</div>
+                    <div class="timeline-label">Recovery</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year" style="background: var(--green);">Year 7</div>
+                    <div class="timeline-value">100%</div>
+                    <div class="timeline-label">Falls Off</div>
+                </div>
+            </div>
+
+            <div class="dark-card">
+                <div class="dark-card-label">Key Insight</div>
+                <div class="dark-card-text">
+                    Each year without updates, your negative items hurt less. By year 4, you've recovered
+                    roughly 60% of the damage. Disputing can reset this progress to near-zero.
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Trap -->
+        <div class="slide" id="slide5">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">The Trap: What Happens When You Dispute</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <p class="content-text">
+                When you dispute an account - even if it's 100% accurate - the following chain reaction
+                occurs that can devastate your carefully built credit recovery.
+            </p>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Bureau Contacts Creditor</div>
+                    </div>
+                    <p class="step-content">
+                        The credit bureau sends an <strong>Automated Consumer Dispute Verification (ACDV)</strong>
+                        to the creditor, initiating the investigation process.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Creditor Must Investigate</div>
+                    </div>
+                    <p class="step-content">
+                        The creditor is <strong>legally required</strong> to investigate and respond to the
+                        dispute within the timeframe mandated by the FCRA.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Creditor Updates the Account</div>
+                    </div>
+                    <p class="step-content">
+                        Here's where the damage happens. The creditor doesn't just verify "yes, this is accurate."
+                        They <strong>UPDATE</strong> the account with current information.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number" style="background: var(--red);">4</div>
+                        <div class="step-title">FICO Sees "Fresh" Delinquency</div>
+                    </div>
+                    <p class="step-content">
+                        FICO's algorithm sees this fresh update and interprets it as recent negative information.
+                        <strong>All your aging recovery is ERASED.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Result -->
+        <div class="slide" id="slide6">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">What the Creditor Reports</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="dark-card">
+                <div class="dark-card-label">After Verification, They Report:</div>
+                <div class="dark-card-text">
+                    "Account status as of [TODAY'S DATE]: Charged Off"<br><br>
+                    "Balance verified as of [TODAY'S DATE]"<br><br>
+                    "Last activity: [TODAY'S DATE]"
+                </div>
+            </div>
+
+            <div class="alert-box warning">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <div class="alert-title">Result: All Aging Recovery is ERASED</div>
+                    <div class="alert-text">
+                        FICO interprets this as: "This delinquency was just confirmed active. This is recent
+                        negative information." Your years of passive recovery are wiped out in an instant.
+                    </div>
+                </div>
+            </div>
+
+            <p class="content-text" style="margin-top: 30px;">
+                This is why the advice "dispute everything" is so dangerous. It works against you when
+                applied to accurate, aging accounts that are naturally healing.
+            </p>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Real-World Example -->
+        <div class="slide" id="slide7">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">Real-World Example</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <p class="content-text">
+                Let's examine a real scenario with a 4-year-old charge-off to see exactly how disputing
+                can devastate your credit score recovery.
+            </p>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-header green">Before Dispute</div>
+                    <div class="comparison-body">
+                        <h3 class="comparison-title">Credit Card XYZ - Aged State</h3>
+                        <ul class="comparison-list">
+                            <li><span class="label">Account</span><span class="value">Credit Card XYZ</span></li>
+                            <li><span class="label">Status</span><span class="value">Charged Off</span></li>
+                            <li><span class="label">Date of First Delinquency</span><span class="value">January 2020</span></li>
+                            <li><span class="label">Last Updated</span><span class="value">March 2020</span></li>
+                            <li><span class="label">Current Date</span><span class="value">January 2024</span></li>
+                        </ul>
+                        <div class="dark-card" style="margin-top: 20px; padding: 20px;">
+                            <div class="dark-card-label">FICO Interpretation</div>
+                            <div class="dark-card-text" style="font-size: 16px;">
+                                4-year-old charge-off with no recent activity.<br>
+                                <strong>Impact: Significantly diminished</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="comparison-header red">After Dispute</div>
+                    <div class="comparison-body">
+                        <h3 class="comparison-title">Credit Card XYZ - Reset State</h3>
+                        <ul class="comparison-list">
+                            <li><span class="label">Account</span><span class="value">Credit Card XYZ</span></li>
+                            <li><span class="label">Status</span><span class="value">Charged Off (VERIFIED)</span></li>
+                            <li><span class="label">Date of First Delinquency</span><span class="value">January 2020</span></li>
+                            <li><span class="label">Last Updated</span><span class="value changed">January 2024 ← CHANGED</span></li>
+                            <li><span class="label">Current Date</span><span class="value">January 2024</span></li>
+                        </ul>
+                        <div class="alert-box warning" style="margin-top: 20px; padding: 15px;">
+                            <div class="alert-content">
+                                <div class="alert-title" style="color: var(--red);">FICO Interpretation</div>
+                                <div class="alert-text">
+                                    Charge-off with FRESH verification.<br>
+                                    <strong>Impact: Returns to near-original severity</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Score Impact -->
+        <div class="slide" id="slide8">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">The Score Impact</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="stats-row" style="justify-content: center; gap: 100px;">
+                <div class="stat-item">
+                    <div class="stat-value" style="color: var(--green);">~680</div>
+                    <div class="stat-label">Before Dispute<br>(recovered from 580)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="font-size: 48px; color: var(--gray);">→</div>
+                    <div class="stat-label"></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: var(--red);">~620</div>
+                    <div class="stat-label">After Dispute<br>(lost 60 points)</div>
+                </div>
+            </div>
+
+            <div class="alert-box warning" style="margin-top: 40px;">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <div class="alert-title">This is why "dispute everything" is dangerous</div>
+                    <div class="alert-text">
+                        You spent 4 years passively recovering from this charge-off. One dispute wiped out
+                        years of natural healing. And you'll need to wait another 3+ years to get back to
+                        where you were before the dispute.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: DOFD vs Last Updated -->
+        <div class="slide" id="slide9">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">DOFD vs. Last Updated</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <p class="content-text">
+                Understanding the difference between these two dates is crucial for making informed
+                decisions about your credit strategy.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>What It Means</th>
+                        <th>Can It Change?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Date of First Delinquency (DOFD)</strong></td>
+                        <td>When you first went delinquent (starts 7-year clock)</td>
+                        <td><span style="color: var(--red); font-weight: 600;">NO</span> - Changing it is illegal "re-aging"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Updated / Date Reported</strong></td>
+                        <td>When creditor last sent info to bureau</td>
+                        <td><span style="color: var(--green); font-weight: 600;">YES</span> - Updates every time they report</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="dark-card">
+                <div class="dark-card-label">The Trap Explained</div>
+                <div class="dark-card-text">
+                    DOFD stays the same, so the account still falls off at the same time. <strong>BUT</strong> the
+                    "Last Updated" date affects how FICO weighs the account's current impact. This is the
+                    date that resets when you dispute.
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 10: How to Tell -->
+        <div class="slide" id="slide10">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">How to Tell If Your Negative Has Aged</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-header green">Leave Alone</div>
+                    <div class="comparison-body">
+                        <h3 class="comparison-title">Signs of an "Aging" Negative</h3>
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span>"Last Updated" date is <strong>1+ years ago</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span>No recent activity on the account</span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span>Balance hasn't changed in a long time</span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span>Status shows historical date</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="comparison-header red">Consider Action</div>
+                    <div class="comparison-body">
+                        <h3 class="comparison-title">Signs of an "Active" Negative</h3>
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon red">!</span>
+                                <span>"Last Updated" within <strong>last 6 months</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon red">!</span>
+                                <span>Creditor is actively reporting</span>
+                            </li>
+                            <li>
+                                <span class="check-icon red">!</span>
+                                <span>Balance or status changing</span>
+                            </li>
+                            <li>
+                                <span class="check-icon red">!</span>
+                                <span>Collection agency recently added</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Strategic Approach -->
+        <div class="slide" id="slide11">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">The Strategic Approach</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-header green">When to LEAVE IT ALONE</div>
+                    <div class="comparison-body">
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span><strong>Charge-off older than 2 years</strong> with no recent updates</span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span><strong>Collection not actively updating</strong> (check "Last Updated" date)</span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span><strong>Within 2-3 years</strong> of the 7-year fall-off</span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">✓</span>
+                                <span><strong>Creditor has stopped reporting</strong> to one or more bureaus</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="comparison-header" style="background: var(--yellow-light); color: var(--orange);">When It MIGHT Be Worth the Risk</div>
+                    <div class="comparison-body">
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon" style="background: var(--yellow-light); color: var(--orange);">!</span>
+                                <span><strong>Actual factual error</strong> (wrong balance, wrong dates, not your account)</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" style="background: var(--yellow-light); color: var(--orange);">!</span>
+                                <span><strong>Account is being actively updated anyway</strong> (nothing to lose)</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" style="background: var(--yellow-light); color: var(--orange);">!</span>
+                                <span><strong>Documented proof</strong> of the inaccuracy</span>
+                            </li>
+                            <li>
+                                <span class="check-icon" style="background: var(--yellow-light); color: var(--orange);">!</span>
+                                <span><strong>Prepared for legal action</strong> if they don't correct</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Math -->
+        <div class="slide" id="slide12">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">The Math: Why Waiting Often Wins</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-header red">Scenario A: Dispute a 4-Year-Old Charge-Off</div>
+                    <div class="comparison-body">
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon red">•</span>
+                                <span>Current state: <strong>60% recovered</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon red">•</span>
+                                <span>After dispute: <strong>Resets to ~10% recovered</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon red">•</span>
+                                <span>Time to re-recover: <strong>3+ years</strong></span>
+                            </li>
+                        </ul>
+                        <div class="dark-card" style="margin-top: 20px; text-align: center;">
+                            <div class="dark-card-label">Total Time in Damaged State</div>
+                            <div class="dark-card-text" style="font-size: 36px; color: var(--red);">7+ Years</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <div class="comparison-header green">Scenario B: Wait for Natural Fall-Off</div>
+                    <div class="comparison-body">
+                        <ul class="check-list">
+                            <li>
+                                <span class="check-icon green">•</span>
+                                <span>Current state: <strong>60% recovered</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">•</span>
+                                <span>Year 5: <strong>75% recovered</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">•</span>
+                                <span>Year 6: <strong>85% recovered</strong></span>
+                            </li>
+                            <li>
+                                <span class="check-icon green">•</span>
+                                <span>Year 7: <strong>Falls off completely</strong></span>
+                            </li>
+                        </ul>
+                        <div class="dark-card" style="margin-top: 20px; text-align: center; background: var(--green);">
+                            <div class="dark-card-label" style="color: var(--green-light);">Total Time in Damaged State</div>
+                            <div class="dark-card-text" style="font-size: 36px;">7 Years (with progressive recovery)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box success">
+                <div class="alert-icon">✅</div>
+                <div class="alert-content">
+                    <div class="alert-title">Scenario B is almost always better</div>
+                    <div class="alert-text">
+                        For old, non-updating negatives, waiting for natural fall-off provides progressive
+                        recovery throughout the 7-year period, while disputing resets the clock and extends
+                        your time in a damaged state.
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Common Misconceptions -->
+        <div class="slide" id="slide13">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">Common Misconceptions</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="myth-grid">
+                <div class="myth-card">
+                    <div class="myth-badge">MYTH</div>
+                    <p class="myth-quote">"But I want to fight for my rights!"</p>
+                    <p class="myth-reality">
+                        <strong>Reality:</strong> Your right under FCRA is to dispute <em>INACCURATE</em>
+                        information. Disputing accurate information isn't fighting for your rights - it's
+                        using the wrong tool and suffering the consequences.
+                    </p>
+                </div>
+                <div class="myth-card">
+                    <div class="myth-badge">MYTH</div>
+                    <p class="myth-quote">"The 609 letter will remove it!"</p>
+                    <p class="myth-reality">
+                        <strong>Reality:</strong> Section 609 gives you the right to REQUEST YOUR CREDIT REPORT.
+                        It has nothing to do with removing accounts. This is a credit repair company myth.
+                    </p>
+                </div>
+                <div class="myth-card">
+                    <div class="myth-badge">MYTH</div>
+                    <p class="myth-quote">"They can't prove it, so it'll be removed!"</p>
+                    <p class="myth-reality">
+                        <strong>Reality:</strong> Creditors keep detailed records. They can almost always verify
+                        accurate debts. The "they can't prove it" strategy rarely works and triggers the aging reset.
+                    </p>
+                </div>
+                <div class="myth-card">
+                    <div class="myth-badge">MYTH</div>
+                    <p class="myth-quote">"My score went up after disputing, so it worked!"</p>
+                    <p class="myth-reality">
+                        <strong>Reality:</strong> This is likely a temporary effect that will reverse. See our
+                        guide on Temporary Removal for why early "success" is often fake.
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Action Steps -->
+        <div class="slide" id="slide14">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">Action Steps</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-number">1</div>
+                    <h3 class="action-title">Audit Your Negatives</h3>
+                    <p class="action-desc">
+                        For each negative on your report, document the Date of First Delinquency,
+                        Last Updated date, current status, and how many bureaus it appears on.
+                    </p>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">2</div>
+                    <h3 class="action-title">Classify Each Negative</h3>
+                    <p class="action-desc">
+                        <strong>Aging:</strong> Last updated 1+ year ago<br>
+                        <strong>Active:</strong> Recently updated, changes occurring<br>
+                        <strong>Inaccurate:</strong> Contains factual errors you can prove
+                    </p>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">3</div>
+                    <h3 class="action-title">Choose the Right Strategy</h3>
+                    <p class="action-desc">
+                        <strong>Aging + Accurate:</strong> Leave alone, build positive credit<br>
+                        <strong>Active + Accurate:</strong> Consider goodwill letter or PFD<br>
+                        <strong>Any + Inaccurate:</strong> Dispute with certified mail
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Key Takeaways -->
+        <div class="slide" id="slide15">
+            <div class="section-header">
+                <span class="star-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </span>
+                <h2 class="section-title">Key Takeaways</h2>
+            </div>
+            <div class="section-divider"></div>
+
+            <div class="takeaway-grid">
+                <div class="takeaway-card">
+                    <div class="takeaway-number">01</div>
+                    <p class="takeaway-text">
+                        <strong>FICO tracks recency of confirmation</strong>, not just existence of negative
+                        items. How recently something was verified matters enormously.
+                    </p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">02</div>
+                    <p class="takeaway-text">
+                        <strong>Disputes force creditor updates</strong> that reset aging recovery. Even
+                        accurate disputes trigger this mechanism.
+                    </p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">03</div>
+                    <p class="takeaway-text">
+                        <strong>Old negatives slowly heal</strong> if left undisturbed. Time is your greatest
+                        ally in credit recovery.
+                    </p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">04</div>
+                    <p class="takeaway-text">
+                        <strong>Date of First Delinquency doesn't change</strong> - the 7-year clock stays
+                        the same. This is legally protected.
+                    </p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">05</div>
+                    <p class="takeaway-text">
+                        <strong>"Last Updated" affects FICO impact</strong> - this is what resets when you
+                        dispute and destroys your aging recovery.
+                    </p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-number">06</div>
+                    <p class="takeaway-text">
+                        <strong>Wait for fall-off</strong> when negatives are old and not actively updating.
+                        Patience beats action in most cases.
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-footer">
+                <div class="brand-name">Credit Insider</div>
+                <div class="brand-sub">Strategic Recovery Guide</div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Thank You -->
+        <div class="slide" id="slide16">
+            <div class="thank-you-slide">
+                <h1 class="thank-you-title">Thank You</h1>
+                <p class="thank-you-subtitle">Knowledge is Your Best Credit Tool</p>
+                <p class="content-text" style="text-align: center; max-width: 600px;">
+                    Understanding the aging reset trap puts you ahead of 99% of consumers. Use this
+                    knowledge wisely and watch your credit heal naturally.
+                </p>
+                <div class="contact-info">
+                    <span class="contact-item">📚 Credit Insider Series</span>
+                    <span class="contact-item">🎯 Strategic Recovery Guide</span>
+                </div>
+                <div style="margin-top: 60px;">
+                    <div class="brand-name" style="font-size: 32px;">Credit Insider</div>
+                    <div class="brand-sub">Strategic Recovery Guide</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <button class="nav-btn" onclick="scrollToSlide('prev')">◀ Prev</button>
+        <span class="slide-counter" id="slideCounter">1 / 16</span>
+        <button class="nav-btn next" onclick="scrollToSlide('next')">Next ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 16;
+
+        function scrollToSlide(direction) {
+            if (direction === 'next' && currentSlide < totalSlides) {
+                currentSlide++;
+            } else if (direction === 'prev' && currentSlide > 1) {
+                currentSlide--;
+            }
+            const slide = document.getElementById('slide' + currentSlide);
+            if (slide) {
+                slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateCounter();
+            }
+        }
+
+        function updateCounter() {
+            document.getElementById('slideCounter').textContent = currentSlide + ' / ' + totalSlides;
+            document.getElementById('progressBar').style.width = (currentSlide / totalSlides * 100) + '%';
+        }
+
+        window.addEventListener('scroll', function() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                const rect = slide.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                    currentSlide = index + 1;
+                    updateCounter();
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                scrollToSlide('next');
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                scrollToSlide('prev');
+            }
+        });
+
+        updateCounter();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa Jane Classic - Elegant eBook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page { page-break-after: always; page-break-inside: avoid; }
+            .page:last-child { page-break-after: auto; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        :root {
+            --charcoal: #2C2C2C;
+            --dark-gray: #4A4A4A;
+            --medium-gray: #6B6B6B;
+            --light-gray: #A8A8A8;
+            --silver: #E5E5E5;
+            --off-white: #F8F8F8;
+            --white: #FFFFFF;
+            --accent: #C9A96E;
+            --accent-light: #E8DCC8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            background: #D0D0D0;
+            color: var(--charcoal);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant', serif;
+            font-weight: 400;
+        }
+
+        .book-container { max-width: 210mm; margin: 0 auto; }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--white);
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px;
+            background: var(--off-white);
+        }
+
+        .cover-border {
+            border: 1px solid var(--silver);
+            padding: 100px 80px;
+            width: 100%;
+        }
+
+        .cover-ornament {
+            width: 120px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .cover-ornament::before,
+        .cover-ornament::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: -3px;
+        }
+
+        .cover-ornament::before { left: 0; }
+        .cover-ornament::after { right: 0; }
+
+        .cover h1 {
+            font-size: 52px;
+            color: var(--charcoal);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cover .subtitle {
+            font-size: 14px;
+            color: var(--medium-gray);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .cover .author {
+            font-family: 'Cormorant', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--dark-gray);
+        }
+
+        /* Half-Title */
+        .half-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px;
+        }
+
+        .half-title h2 {
+            font-size: 36px;
+            color: var(--charcoal);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Dedication Page */
+        .dedication-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 80px;
+            min-height: 297mm;
+        }
+
+        .dedication-page p {
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--medium-gray);
+            line-height: 1.9;
+            max-width: 350px;
+        }
+
+        .dedication-page .dedication-to {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-style: normal;
+        }
+
+        /* Epigraph Page */
+        .epigraph-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 80px;
+        }
+
+        .epigraph-page .epigraph-text {
+            font-family: 'Cormorant', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.7;
+            max-width: 420px;
+            margin-bottom: 30px;
+        }
+
+        .epigraph-page .epigraph-source {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--medium-gray);
+        }
+
+        /* Copyright Page */
+        .copyright-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px;
+            font-size: 11px;
+            color: var(--medium-gray);
+            line-height: 2;
+        }
+
+        .copyright-page p {
+            margin-bottom: 15px;
+        }
+
+        /* TOC */
+        .toc {
+            padding: 80px;
+        }
+
+        .toc h2 {
+            font-size: 32px;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+        }
+
+        .toc-chapter {
+            display: flex;
+            align-items: baseline;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--silver);
+        }
+
+        .toc-number {
+            font-family: 'Cormorant', serif;
+            font-size: 14px;
+            color: var(--accent);
+            width: 80px;
+            letter-spacing: 2px;
+        }
+
+        .toc-title {
+            flex: 1;
+            font-size: 16px;
+            color: var(--charcoal);
+        }
+
+        .toc-dots {
+            flex: 1;
+            border-bottom: 1px dotted var(--light-gray);
+            margin: 0 20px 5px;
+        }
+
+        .toc-page {
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            color: var(--medium-gray);
+        }
+
+        /* Chapter Opener */
+        .chapter-opener {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 80px;
+        }
+
+        .chapter-number {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .chapter-opener h2 {
+            font-size: 42px;
+            color: var(--charcoal);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .chapter-opener .divider {
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .chapter-opener .epigraph {
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--medium-gray);
+            max-width: 400px;
+            line-height: 1.7;
+        }
+
+        .chapter-opener .epigraph-author {
+            font-size: 12px;
+            color: var(--light-gray);
+            margin-top: 15px;
+            font-style: normal;
+            letter-spacing: 2px;
+        }
+
+        /* Content Page */
+        .content-page {
+            padding: 60px 80px;
+            columns: 1;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: 'Cormorant', serif;
+            font-size: 72px;
+            line-height: 0.8;
+            padding: 10px 15px 0 0;
+            color: var(--charcoal);
+        }
+
+        .content-text {
+            font-size: 12px;
+            line-height: 2;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        .content-text:first-of-type {
+            text-indent: 0;
+        }
+
+        .section-break {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--accent);
+            font-size: 18px;
+            letter-spacing: 10px;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            float: right;
+            width: 45%;
+            margin: 20px 0 20px 40px;
+            padding: 30px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .pull-quote p {
+            font-family: 'Cormorant', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .pull-quote-left {
+            float: left;
+            width: 45%;
+            margin: 20px 40px 20px 0;
+            padding: 30px;
+            border-right: 2px solid var(--accent);
+        }
+
+        .pull-quote-left p {
+            font-family: 'Cormorant', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.6;
+            text-align: right;
+        }
+
+        /* Image Page */
+        .image-page {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-image {
+            flex: 1;
+            background: var(--silver);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .image-caption {
+            padding: 30px 80px;
+            text-align: center;
+        }
+
+        .image-caption p {
+            font-size: 11px;
+            color: var(--medium-gray);
+            font-style: italic;
+        }
+
+        .image-caption .caption-title {
+            font-family: 'Cormorant', serif;
+            font-size: 14px;
+            color: var(--charcoal);
+            font-style: normal;
+            margin-bottom: 8px;
+        }
+
+        /* Two-Column Layout */
+        .two-column-page {
+            padding: 60px 80px;
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        /* Running Headers/Footers */
+        .running-header {
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            color: var(--light-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant', serif;
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+
+        /* Back Matter */
+        .acknowledgments {
+            padding: 80px;
+        }
+
+        .acknowledgments h2 {
+            font-size: 24px;
+            color: var(--charcoal);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+        }
+
+        .acknowledgments p {
+            font-size: 12px;
+            color: var(--medium-gray);
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Author's Note */
+        .authors-note {
+            padding: 80px;
+        }
+
+        .authors-note h2 {
+            font-size: 24px;
+            color: var(--charcoal);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+        }
+
+        .authors-note p {
+            font-size: 12px;
+            color: var(--medium-gray);
+            line-height: 2;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        .authors-note p:first-of-type {
+            text-indent: 0;
+        }
+
+        .authors-note .signature {
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-top: 40px;
+            text-indent: 0;
+        }
+
+        /* Discussion Questions */
+        .discussion-page {
+            padding: 80px;
+        }
+
+        .discussion-page h2 {
+            font-size: 24px;
+            color: var(--charcoal);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+        }
+
+        .discussion-page ol {
+            list-style: none;
+            counter-reset: question;
+        }
+
+        .discussion-page li {
+            font-size: 12px;
+            color: var(--dark-gray);
+            line-height: 1.9;
+            margin-bottom: 25px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .discussion-page li::before {
+            content: counter(question);
+            counter-increment: question;
+            position: absolute;
+            left: 0;
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        /* About the Author */
+        .about-author {
+            padding: 80px;
+        }
+
+        .about-author h2 {
+            font-size: 24px;
+            color: var(--charcoal);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+        }
+
+        .author-portrait {
+            float: left;
+            width: 150px;
+            height: 200px;
+            background: var(--silver);
+            margin: 0 30px 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--medium-gray);
+        }
+
+        .about-author p {
+            font-size: 12px;
+            color: var(--medium-gray);
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Also By */
+        .also-by {
+            padding: 80px;
+            text-align: center;
+        }
+
+        .also-by h2 {
+            font-size: 20px;
+            color: var(--charcoal);
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+        }
+
+        .book-list {
+            list-style: none;
+        }
+
+        .book-list li {
+            font-family: 'Cormorant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .book-list .year {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 11px;
+            font-style: normal;
+            color: var(--light-gray);
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Back Cover */
+        .back-cover {
+            background: var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px;
+        }
+
+        .back-cover .ornament {
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin-bottom: 40px;
+        }
+
+        .back-cover h3 {
+            font-size: 28px;
+            color: var(--white);
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+        }
+
+        .back-cover .about-text {
+            font-size: 13px;
+            color: var(--light-gray);
+            line-height: 1.9;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+
+        .back-cover .contact {
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+
+        .back-cover .praise-quote {
+            font-family: 'Cormorant', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--silver);
+            max-width: 380px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .back-cover .praise-source {
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* Part Page */
+        .part-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 80px;
+            background: var(--off-white);
+        }
+
+        .part-page .part-number {
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .part-page h2 {
+            font-size: 36px;
+            color: var(--charcoal);
+            letter-spacing: 4px;
+        }
+
+        /* Letter Format */
+        .letter-text {
+            font-family: 'Cormorant', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--dark-gray);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            text-indent: 0;
+        }
+
+        .letter-date {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 11px;
+            font-style: normal;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+        }
+
+        .letter-signature {
+            font-family: 'Cormorant', serif;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <!-- Page 1: Cover -->
+        <div class="page cover">
+            <div class="cover-border">
+                <div class="cover-ornament"></div>
+                <p class="subtitle">A Novel</p>
+                <h1>The Silent<br>Garden</h1>
+                <p class="author">by Eleanor Whitmore</p>
+            </div>
+        </div>
+
+        <!-- Page 2: Half-Title -->
+        <div class="page half-title">
+            <h2>The Silent Garden</h2>
+        </div>
+
+        <!-- Page 3: Dedication -->
+        <div class="page dedication-page">
+            <p class="dedication-to">For</p>
+            <p>
+                My grandmother, who taught me that every garden holds a story,
+                and every story grows from seeds planted long ago.
+            </p>
+        </div>
+
+        <!-- Page 4: Epigraph -->
+        <div class="page epigraph-page">
+            <p class="epigraph-text">
+                "The garden suggests there might be a place where we can meet nature halfway."
+            </p>
+            <p class="epigraph-source">- Michael Pollan</p>
+        </div>
+
+        <!-- Page 5: Copyright -->
+        <div class="page copyright-page">
+            <div>
+                <p>Copyright (c) 2025 by Eleanor Whitmore</p>
+                <p>All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher.</p>
+                <p>This is a work of fiction. Names, characters, places, and incidents either are the product of the author's imagination or are used fictitiously. Any resemblance to actual persons, living or dead, events, or locales is entirely coincidental.</p>
+                <p>First Edition: March 2025</p>
+                <p>ISBN: 978-0-000000-00-0 (Hardcover)<br>
+                ISBN: 978-0-000000-01-7 (Paperback)<br>
+                ISBN: 978-0-000000-02-4 (eBook)</p>
+                <p>Cover design by Studio Rosa Jane<br>
+                Interior illustrations by Catherine Moore</p>
+                <p>Printed in the United States of America</p>
+                <p>10 9 8 7 6 5 4 3 2 1</p>
+            </div>
+        </div>
+
+        <!-- Page 6: TOC -->
+        <div class="page toc">
+            <h2>Contents</h2>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER I</span>
+                <span class="toc-title">The Beginning</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">9</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER II</span>
+                <span class="toc-title">Shadows in Bloom</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">35</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER III</span>
+                <span class="toc-title">The Secret Path</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">67</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER IV</span>
+                <span class="toc-title">Whispers</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">98</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER V</span>
+                <span class="toc-title">The Revelation</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">134</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number">CHAPTER VI</span>
+                <span class="toc-title">Homecoming</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">167</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number"></span>
+                <span class="toc-title">Acknowledgments</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">198</span>
+            </div>
+            <div class="toc-chapter">
+                <span class="toc-number"></span>
+                <span class="toc-title">About the Author</span>
+                <span class="toc-dots"></span>
+                <span class="toc-page">201</span>
+            </div>
+        </div>
+
+        <!-- Page 7: Part One -->
+        <div class="page part-page">
+            <p class="part-number">Part One</p>
+            <h2>Roots</h2>
+        </div>
+
+        <!-- Page 8: Chapter One Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter One</span>
+            <h2>The Beginning</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "In every garden there is a story waiting to be told, a secret waiting to be discovered."
+            </p>
+            <p class="epigraph-author">- Anonymous</p>
+        </div>
+
+        <!-- Page 9: Content Page 1 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter One</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">T</span>he garden had been silent for as long as anyone could remember. Not the silence of abandonment, but rather the hush of secrets kept, of stories waiting to unfold. Margaret stood at the iron gate, her fingers tracing the rust that had accumulated over decades of neglect.
+            </p>
+            <p class="content-text">
+                She had inherited this place from her grandmother, a woman she had only met twice in her thirty-two years. The letter from the solicitor had arrived on a gray Tuesday morning, its contents as unexpected as they were intriguing. An estate in the countryside, a garden spanning three acres, and a collection of journals that, the letter mentioned cryptically, might contain answers to questions she hadn't yet thought to ask.
+            </p>
+            <div class="pull-quote">
+                <p>"Some gardens grow flowers. This one grew mysteries."</p>
+            </div>
+            <p class="content-text">
+                The journey from the city had taken longer than expected. Country roads wound through villages with names that seemed pulled from another century, past fields where sheep grazed indifferently and cottages with smoke curling from their chimneys. By the time she arrived, the autumn sun was already low on the horizon, casting long shadows across the overgrown lawn.
+            </p>
+            <p class="content-text">
+                The house itself was smaller than she had imagined, though perhaps it only seemed that way because of how the garden had grown to embrace it. Ivy climbed the stone walls, and climbing roses, now bare and thorny, clung to the facade with determined tenacity.
+            </p>
+            <span class="page-number">9</span>
+        </div>
+
+        <!-- Page 10: Content Page 2 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter One</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">I</span>nside, the house held its breath. Dust motes danced in the slanting light from windows that hadn't been cleaned in years. Furniture stood draped in white sheets, ghostly sentinels of a life suspended. Margaret moved through the rooms slowly, each step releasing the scent of old books and lavender and something else beneath it all, something green and growing.
+            </p>
+            <p class="content-text">
+                The journals were exactly where the solicitor had said they would be: in the study, arranged chronologically on shelves that lined three walls. Decades of observations, written in her grandmother's meticulous hand. Margaret pulled one from the shelf at random and opened it to find not words, but pressed flowers, each one labeled with its Latin name and the date it was collected.
+            </p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                That first night, she slept in her grandmother's bedroom, surrounded by the scent of roses that seemed to emanate from the very walls. In her dreams, she walked through the garden, and the plants whispered to her in voices she almost understood. When she woke to the gray dawn light, she knew with certainty that she wouldn't be returning to the city anytime soon.
+            </p>
+            <p class="content-text">
+                There was work to be done here, secrets to uncover, and a garden waiting to share its silence.
+            </p>
+            <p class="content-text">
+                The morning revealed what the twilight had hidden. The garden was vast, far larger than she had realized, stretching beyond the immediate grounds into what seemed like wilderness. Pathways, now overgrown with weeds and climbing vines, wound through beds that might once have been orderly. Here and there, she could see the bones of a formal design: boxwood hedges, now shaggy and misshapen; a stone fountain, dry and cracked; the skeleton of a rose arbor, its wooden frame silvered with age.
+            </p>
+            <span class="page-number">11</span>
+        </div>
+
+        <!-- Page 11: Image Page 1 -->
+        <div class="page image-page">
+            <div class="full-image">[ILLUSTRATION]</div>
+            <div class="image-caption">
+                <p class="caption-title">The Garden Gate</p>
+                <p>The entrance to Rose Cottage, as it appeared in the autumn of 1952.</p>
+            </div>
+        </div>
+
+        <!-- Page 12: Chapter Two Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter Two</span>
+            <h2>Shadows in Bloom</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "What is a weed? A plant whose virtues have not yet been discovered."
+            </p>
+            <p class="epigraph-author">- Ralph Waldo Emerson</p>
+        </div>
+
+        <!-- Page 13: Content Page 3 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Two</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">T</span>hree weeks passed before Margaret found the first letter. It was tucked inside a journal from 1963, between pages describing the propagation of winter roses and the careful cultivation of hellebores. The paper was thin and yellowed, the ink faded to a soft brown, but the handwriting was not her grandmother's.
+            </p>
+            <p class="content-text">
+                "My dearest Eliza," it began, and Margaret felt a shiver run down her spine. Her grandmother's name had been Elizabeth, but no one had called her Eliza in sixty years.
+            </p>
+            <div class="pull-quote-left">
+                <p>"The garden remembers what people choose to forget."</p>
+            </div>
+            <p class="content-text">
+                The letter spoke of a summer evening, of fireflies in the meadow beyond the garden wall, of promises made under the old oak tree that still stood at the far edge of the property. It spoke of love, yes, but also of something else, something darker that lurked between the lines like shadows between flowers.
+            </p>
+            <p class="content-text">
+                Margaret read the letter three times before setting it aside. She looked out the study window at the garden below, now familiar after weeks of exploration, and wondered how many secrets were buried beneath its soil.
+            </p>
+            <p class="content-text">
+                That afternoon, she began her search in earnest. If there was one letter, there would be others. She had learned enough about her grandmother by now to know that Elizabeth kept everything, organized it meticulously, and never threw away anything that mattered.
+            </p>
+            <span class="page-number">35</span>
+        </div>
+
+        <!-- Page 14: Content Page 4 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Two</span>
+            </div>
+            <p class="content-text">
+                The journals told a story of their own, one that unfolded gradually as Margaret made her way through them chronologically. Her grandmother had started keeping them in 1945, just after the war ended, when she was a young woman newly married and newly arrived at this house. The early entries were hopeful, full of plans for the garden and dreams for the future.
+            </p>
+            <p class="content-text">
+                But somewhere around 1950, the tone began to change. The entries became shorter, more cryptic. Whole weeks would pass without a single word written, and then suddenly there would be pages and pages of observations about a single plant, a single bloom, as if the garden had become a refuge from something too painful to name.
+            </p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                It was in the journal from 1952 that Margaret found the photograph. It had been pressed between pages describing the planting of a memorial garden, though the journal didn't say who or what was being memorialized. The photograph showed two women standing at the gate, the same gate where Margaret had stood on her first day here. They were smiling, their arms linked, and one of them was unmistakably her grandmother as a young woman.
+            </p>
+            <p class="content-text">
+                The other woman, Margaret did not recognize. But there was something about her face, something familiar that Margaret couldn't quite place. She turned the photograph over and found a single word written in her grandmother's hand: "Always."
+            </p>
+            <span class="page-number">42</span>
+        </div>
+
+        <!-- Page 15: Image Page 2 -->
+        <div class="page image-page">
+            <div class="full-image">[ILLUSTRATION]</div>
+            <div class="image-caption">
+                <p class="caption-title">The Memorial Garden</p>
+                <p>Sketch from Elizabeth's journal, dated June 1952.</p>
+            </div>
+        </div>
+
+        <!-- Page 16: Chapter Three Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter Three</span>
+            <h2>The Secret Path</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "Gardens are not made by singing 'Oh, how beautiful!' and sitting in the shade."
+            </p>
+            <p class="epigraph-author">- Rudyard Kipling</p>
+        </div>
+
+        <!-- Page 17: Content Page 5 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Three</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">S</span>pring came slowly to the garden, but when it arrived, it arrived with purpose. Margaret had spent the winter months clearing paths and uncovering beds, and now she watched as the garden began to reveal what had been sleeping beneath the soil all along.
+            </p>
+            <p class="content-text">
+                Crocuses appeared first, pushing through the last of the snow in defiant purple and white. Then came the daffodils, hundreds of them, planted decades ago in drifts that followed the natural contours of the land. By April, the garden was alive with color, and Margaret understood for the first time why her grandmother had devoted her life to this place.
+            </p>
+            <div class="pull-quote">
+                <p>"Every path in a garden leads somewhere. The question is whether you're ready to see where."</p>
+            </div>
+            <p class="content-text">
+                It was while clearing a particularly overgrown section near the eastern wall that Margaret discovered the hidden path. It was barely visible, just a break in the hedge that could easily have been natural, but when she pushed through, she found herself in a part of the garden she had never seen before.
+            </p>
+            <p class="content-text">
+                This space was different from the rest, more intimate somehow, more intentional. A small clearing surrounded by roses that had grown wild but were now, Margaret could see, beginning to show the first signs of new growth. In the center stood a stone bench, weathered but intact, and beside it, a small marker that might have been a gravestone.
+            </p>
+            <span class="page-number">67</span>
+        </div>
+
+        <!-- Page 18: Content Page 6 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Three</span>
+            </div>
+            <p class="content-text">
+                Margaret knelt beside the marker, brushing away the moss and lichen that had accumulated over the years. The inscription was simple: "R.M. 1920-1951. Beloved."
+            </p>
+            <p class="content-text">
+                She sat back on her heels, her mind racing. This was the memorial garden from the journal, the one her grandmother had planted in 1952. But who was R.M., and why had Elizabeth never mentioned her?
+            </p>
+            <p class="content-text">
+                The letters, when she found more of them, began to provide some answers. They had been hidden throughout the journals, tucked between pages, folded into envelopes pressed flat by years of storage. All were written in the same elegant hand, and all were addressed to "My dearest Eliza."
+            </p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                Ruth Morgan had been her grandmother's closest friend, Margaret learned. They had met during the war, when both were working at a hospital in London. The letters spoke of shared experiences, of fear and hope and the particular bond that forms between people who have seen the worst together and survived.
+            </p>
+            <p class="content-text">
+                After the war, Ruth had moved to the cottage next door, the one that now stood empty and beginning to crumble. She had helped Elizabeth plant the first roses in this garden, had shared countless cups of tea in the kitchen that Margaret now called her own.
+            </p>
+            <p class="content-text">
+                And then, in the summer of 1951, Ruth had died.
+            </p>
+            <span class="page-number">76</span>
+        </div>
+
+        <!-- Page 19: Part Two -->
+        <div class="page part-page">
+            <p class="part-number">Part Two</p>
+            <h2>Growth</h2>
+        </div>
+
+        <!-- Page 20: Chapter Four Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter Four</span>
+            <h2>Whispers</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "The love of gardening is a seed once sown that never dies."
+            </p>
+            <p class="epigraph-author">- Gertrude Jekyll</p>
+        </div>
+
+        <!-- Page 21: Content Page 7 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Four</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">M</span>argaret had always prided herself on her practicality. She was a woman of the modern age, a journalist who dealt in facts and figures, not feelings and fantasies. But as summer settled over the garden, she found herself beginning to question everything she thought she knew about the world.
+            </p>
+            <p class="content-text">
+                It started with small things. A sense of being watched when she worked alone in the garden. The feeling that the plants responded to her presence, leaning toward her when she spoke to them, growing more vigorously in the beds she tended most carefully.
+            </p>
+            <div class="pull-quote-left">
+                <p>"Perhaps the dead don't leave us entirely. Perhaps they linger in the places they loved."</p>
+            </div>
+            <p class="content-text">
+                And then there were the whispers. She heard them first on a still June evening, sitting on the bench in the memorial garden. Voices, barely audible, carried on a breeze that seemed to come from nowhere. She couldn't make out the words, but the tone was clear: conversation, laughter, the easy intimacy of old friends.
+            </p>
+            <p class="content-text">
+                She told herself it was her imagination, the wind in the leaves, the distant murmur of the stream that ran along the property's edge. But deep down, in a part of herself she rarely acknowledged, she wondered if the garden was trying to tell her something.
+            </p>
+            <span class="page-number">98</span>
+        </div>
+
+        <!-- Page 22: Content Page 8 (Letter) -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Four</span>
+            </div>
+            <p class="letter-date">August 12, 1951</p>
+            <p class="letter-text">
+                My dearest Eliza,
+            </p>
+            <p class="letter-text">
+                The roses are blooming beautifully this year. I sat in our garden today and thought of all the summers we've spent together, and all the summers still to come. You must promise me that whatever happens, you will care for this garden. It is our legacy, yours and mine, the one thing we have created together that will outlast us both.
+            </p>
+            <p class="letter-text">
+                I know you worry about me, but there is no need. I am exactly where I want to be, doing exactly what I love, with the person I love most in the world nearby. What more could anyone ask from life?
+            </p>
+            <p class="letter-text">
+                I have been thinking about the memorial garden we discussed, the one near the eastern wall. I think it should have roses, don't you? Something that blooms late in the season, so there is always something beautiful to look at, even as the year draws to a close.
+            </p>
+            <p class="letter-text">
+                Until tomorrow, my friend.
+            </p>
+            <p class="letter-signature">Your Ruth</p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                Margaret folded the letter carefully and placed it back in the journal where she had found it. It was dated two weeks before Ruth died, but there was no hint in it of what was to come. Whatever had taken Ruth from this world, she had not seen it coming.
+            </p>
+            <span class="page-number">107</span>
+        </div>
+
+        <!-- Page 23: Image Page 3 -->
+        <div class="page image-page">
+            <div class="full-image">[ILLUSTRATION]</div>
+            <div class="image-caption">
+                <p class="caption-title">The Rose Garden in Summer</p>
+                <p>The memorial garden at its peak bloom, photographed in July.</p>
+            </div>
+        </div>
+
+        <!-- Page 24: Chapter Five Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter Five</span>
+            <h2>The Revelation</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "The truth is rarely pure and never simple."
+            </p>
+            <p class="epigraph-author">- Oscar Wilde</p>
+        </div>
+
+        <!-- Page 25: Content Page 9 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Five</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">I</span>t was Mrs. Henderson from the village who finally provided the missing piece. She was old enough to remember Ruth Morgan, old enough to remember the scandal that had rocked the village in the summer of 1951.
+            </p>
+            <p class="content-text">
+                "They said she drowned," Mrs. Henderson said, her voice dropping to a whisper even though they were alone in her sitting room. "In the pond at the edge of your grandmother's property. But there were those who said it wasn't an accident."
+            </p>
+            <p class="content-text">
+                Margaret's tea grew cold in her cup as she listened to the old woman's story. Ruth and Elizabeth, inseparable since the war, living side by side in their cottages, spending every day together in the garden they had created.
+            </p>
+            <div class="pull-quote">
+                <p>"People talked, of course. They always do when they see something they don't understand."</p>
+            </div>
+            <p class="content-text">
+                "People talked," Mrs. Henderson continued. "They said it wasn't natural, two women living like that, so close, so devoted. And then Ruth died, and your grandmother never spoke to anyone again. Not really. She became a ghost herself, haunting that garden until the day she died."
+            </p>
+            <p class="content-text">
+                Margaret walked back to the cottage in a daze. She understood now why the garden felt the way it did, why the silence was not emptiness but presence. Her grandmother had poured sixty years of love and grief into this place, and the garden had absorbed it all.
+            </p>
+            <span class="page-number">134</span>
+        </div>
+
+        <!-- Page 26: Content Page 10 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Five</span>
+            </div>
+            <p class="content-text">
+                The final journal was the one Margaret had been avoiding, the one from 1951. She had known, without quite admitting it to herself, that it would contain the answers she was seeking. But she had also known that those answers would change everything.
+            </p>
+            <p class="content-text">
+                She read it in the memorial garden, sitting on the bench where Ruth had once sat, surrounded by roses that Ruth had helped to plant. The entries told a story of love, profound and abiding, the kind of love that existed beyond friendship, beyond the narrow definitions that society allowed.
+            </p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                Ruth's death had been an accident. A fall, a head wound, a body found too late in the shallows of the pond. But the guilt Elizabeth carried was not about the death itself. It was about what came before: a love confessed, a love returned, a single night that had transformed everything.
+            </p>
+            <p class="content-text">
+                They had been planning to leave together, to start a new life somewhere they could be themselves. But Ruth had died before they could escape, and Elizabeth had been left alone with her grief and her guilt and a secret that she would carry to her grave.
+            </p>
+            <p class="content-text">
+                Or almost to her grave. Because she had left these journals, these letters, this garden. She had left them for someone to find, for someone to understand.
+            </p>
+            <p class="content-text">
+                She had left them for Margaret.
+            </p>
+            <span class="page-number">156</span>
+        </div>
+
+        <!-- Page 27: Chapter Six Opener -->
+        <div class="page chapter-opener">
+            <span class="chapter-number">Chapter Six</span>
+            <h2>Homecoming</h2>
+            <div class="divider"></div>
+            <p class="epigraph">
+                "To plant a garden is to believe in tomorrow."
+            </p>
+            <p class="epigraph-author">- Audrey Hepburn</p>
+        </div>
+
+        <!-- Page 28: Content Page 11 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Six</span>
+            </div>
+            <p class="content-text">
+                <span class="drop-cap">A</span> year had passed since Margaret first stood at the garden gate. The seasons had turned, the garden had bloomed and faded and bloomed again, and she had learned to listen to its silence in a way she never could have imagined.
+            </p>
+            <p class="content-text">
+                She had made her decision: she would stay. Not because she had nowhere else to go, but because this was where she belonged. She had come here looking for answers about her grandmother, but what she had found was something more: a place where the past and present coexisted, where love persisted beyond death, where the simple act of tending a garden could be an act of remembrance and healing.
+            </p>
+            <div class="pull-quote-left">
+                <p>"Home is not where you start from. It's where you find yourself."</p>
+            </div>
+            <p class="content-text">
+                She had restored the memorial garden first, pruning back the wild growth, clearing the paths, tending the roses until they bloomed as beautifully as they must have in Ruth's day. She had added new plantings too: forget-me-nots and love-lies-bleeding, lavender and rosemary for remembrance.
+            </p>
+            <p class="content-text">
+                And on the bench beside Ruth's marker, she had placed a new stone, smaller but matching in style. It bore her grandmother's name and dates, and a single word that echoed the one on Ruth's stone: "Always."
+            </p>
+            <span class="page-number">167</span>
+        </div>
+
+        <!-- Page 29: Content Page 12 -->
+        <div class="page content-page">
+            <div class="running-header">
+                <span>The Silent Garden</span>
+                <span>Chapter Six</span>
+            </div>
+            <p class="content-text">
+                The garden was no longer silent to Margaret's ears. She heard it now in the rustle of leaves, the hum of bees, the distant song of birds in the meadow beyond the wall. She heard it in the whispers that came to her on summer evenings, voices she had learned to recognize, to welcome.
+            </p>
+            <p class="content-text">
+                She had started keeping journals of her own, recording the garden's progress through the seasons, pressing flowers between the pages just as her grandmother had done. Perhaps one day, someone else would find them and learn the story of this place. Perhaps they would understand what she had come to understand: that love, true love, never really dies. It simply transforms, taking root in the soil, blooming in the flowers, whispering in the wind.
+            </p>
+            <div class="section-break">* * *</div>
+            <p class="content-text">
+                On the anniversary of Ruth's death, Margaret planted a new rose in the memorial garden. It was a variety called "Eternal Devotion," chosen for its name as much as its beauty. As she firmed the soil around its roots, she spoke aloud for the first time in this place that had taught her the value of silence.
+            </p>
+            <p class="content-text">
+                "I understand now," she said. "Thank you for trusting me with your story."
+            </p>
+            <p class="content-text">
+                And the garden, in its own silent way, answered her.
+            </p>
+            <span class="page-number">178</span>
+        </div>
+
+        <!-- Page 30: Image Page 4 -->
+        <div class="page image-page">
+            <div class="full-image">[ILLUSTRATION]</div>
+            <div class="image-caption">
+                <p class="caption-title">Eternal Devotion</p>
+                <p>The memorial garden restored, with the new rose in bloom.</p>
+            </div>
+        </div>
+
+        <!-- Page 31: Acknowledgments -->
+        <div class="page acknowledgments">
+            <h2>Acknowledgments</h2>
+            <p>
+                This book would not exist without the support and encouragement of many remarkable people. First and foremost, I must thank my editor, whose patience and insight helped shape this story into what it has become. Her belief in this project sustained me through the difficult moments when the words wouldn't come.
+            </p>
+            <p>
+                To my agent, who saw potential in a rough manuscript and helped me find its heart: thank you for your unwavering faith.
+            </p>
+            <p>
+                To my family, who listened to countless iterations of plot points and never once complained: your love sustains me.
+            </p>
+            <p>
+                To the gardeners, botanists, and dreamers who inspired the world of this novel: may you always find beauty in the growing things. I am particularly grateful to the staff at the Royal Horticultural Society's Wisley Gardens, whose knowledge of historic roses proved invaluable.
+            </p>
+            <p>
+                To my writing group, who read early drafts and offered both criticism and encouragement in equal measure: you made this a better book.
+            </p>
+            <p>
+                And finally, to you, dear reader: thank you for walking through this garden with me. Stories live only when they are shared, and I am grateful that you chose to share this one.
+            </p>
+        </div>
+
+        <!-- Page 32: Author's Note -->
+        <div class="page authors-note">
+            <h2>Author's Note</h2>
+            <p>
+                The Silent Garden grew from a seed planted long ago, when I discovered a box of old letters in my grandmother's attic. Those letters, like the ones in this novel, told a story that had been hidden for decades, a story of love and loss and the gardens we create to remember what we cannot forget.
+            </p>
+            <p>
+                While the characters in this book are fictional, the emotions are not. The history of hidden loves, of lives lived in the shadows because society would not allow them in the light, is a history that belongs to all of us. I wrote this book to honor those who came before us, who loved in silence because they had no other choice.
+            </p>
+            <p>
+                The language of flowers, which appears throughout this novel, is based on the Victorian "floriography" that allowed people to communicate sentiments too dangerous or improper to speak aloud. In Ruth and Elizabeth's time, this coded language would have had particular resonance for those who needed to express feelings that society condemned.
+            </p>
+            <p>
+                Gardens have always been places of transformation and healing. They teach us about patience and growth, about the cycles of life and death, about the persistence of beauty even in the harshest conditions. My hope is that this story captures something of that magic.
+            </p>
+            <p class="signature">Eleanor Whitmore<br>The Cotswolds, 2025</p>
+        </div>
+
+        <!-- Page 33: Discussion Questions -->
+        <div class="page discussion-page">
+            <h2>Discussion Questions</h2>
+            <ol>
+                <li>How does the garden function as a character in the novel? What does it represent to each of the main characters?</li>
+                <li>Margaret discovers her grandmother's secret through careful detective work. Do you think Elizabeth wanted her story to be found? Why did she leave the journals?</li>
+                <li>The novel explores the theme of hidden loves and societal expectations. How have attitudes toward LGBTQ+ relationships changed since the 1950s? What challenges remain?</li>
+                <li>How does the author use the language of flowers to convey meaning? Can you identify specific examples?</li>
+                <li>Margaret undergoes a significant transformation over the course of the novel. How does her relationship with the garden reflect her inner journey?</li>
+                <li>The title "The Silent Garden" can be interpreted in multiple ways. What does silence mean in the context of this story?</li>
+                <li>How does the structure of the novel, moving between past and present, enhance your understanding of the characters and their relationships?</li>
+                <li>What do you think Margaret's future holds? Will she continue her grandmother's legacy?</li>
+            </ol>
+        </div>
+
+        <!-- Page 34: About the Author -->
+        <div class="page about-author">
+            <h2>About the Author</h2>
+            <div class="author-portrait">[AUTHOR PHOTO]</div>
+            <p>
+                <strong>Eleanor Whitmore</strong> is the author of three previous novels: <em>The Lighthouse Keeper's Daughter</em> (2018), <em>Letters Never Sent</em> (2020), and <em>The Winter House</em> (2022). Her work has been translated into twenty-three languages and has received numerous awards, including the Women's Prize for Fiction longlist.
+            </p>
+            <p>
+                Born in Manchester, Eleanor studied English Literature at Oxford before pursuing a career in journalism. She spent fifteen years as a features writer for national newspapers before turning to fiction full-time.
+            </p>
+            <p>
+                Her writing is known for its lyrical prose, complex female characters, and exploration of the ways our histories shape our presents. She divides her time between London and a cottage in the Cotswolds, where she tends to her own not-so-silent garden.
+            </p>
+            <p>
+                Eleanor is married to her university sweetheart and has two grown children. When not writing, she can be found with her hands in the soil, continuing to learn the lessons that gardens have to teach.
+            </p>
+            <p>
+                Visit her at <strong>www.eleanorwhitmore.com</strong> or follow her on social media @EleanorWrites.
+            </p>
+        </div>
+
+        <!-- Page 35: Also By -->
+        <div class="page also-by">
+            <h2>Also by Eleanor Whitmore</h2>
+            <ul class="book-list">
+                <li>
+                    The Lighthouse Keeper's Daughter
+                    <span class="year">2018</span>
+                </li>
+                <li>
+                    Letters Never Sent
+                    <span class="year">2020</span>
+                </li>
+                <li>
+                    The Winter House
+                    <span class="year">2022</span>
+                </li>
+            </ul>
+            <div style="margin-top: 60px;">
+                <p style="font-size: 12px; color: var(--medium-gray); line-height: 1.8;">
+                    All titles available in hardcover, paperback, and ebook editions.<br>
+                    Visit your local bookseller or order online.
+                </p>
+            </div>
+        </div>
+
+        <!-- Page 36: Back Cover -->
+        <div class="page back-cover">
+            <div class="ornament"></div>
+            <p class="praise-quote">
+                "A luminous meditation on love, loss, and the gardens we create to remember those we have lost. Eleanor Whitmore has written a masterpiece."
+            </p>
+            <p class="praise-source">- The Sunday Times</p>
+            <h3>ELEANOR WHITMORE</h3>
+            <p class="about-text">
+                When Margaret inherits her grandmother's cottage, she discovers a garden full of secrets and a love story hidden for decades. As she unearths the truth about two women who loved in silence, she learns that some gardens grow more than flowers, they grow the stories we dare not tell.
+            </p>
+            <p class="contact">www.eleanorwhitmore.com</p>
+        </div>
+    </div>
+</body>
+</html>

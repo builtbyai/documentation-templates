@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma & James - Wedding Album</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #FFFEF9;
+            --champagne: #F7E7CE;
+            --blush: #FAE5E0;
+            --sage: #B7C4A8;
+            --gold: #C9A86C;
+            --charcoal: #3D3D3D;
+            --muted: #8B8B8B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: #E8E4DE;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cover */
+        .cover {
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            min-height: 297mm;
+            position: relative;
+        }
+
+        .cover-frame {
+            position: absolute;
+            top: 15mm;
+            left: 15mm;
+            right: 15mm;
+            bottom: 15mm;
+            border: 1px solid var(--gold);
+        }
+
+        .cover-photo {
+            flex: 1;
+            margin: 25mm;
+            background: linear-gradient(135deg, var(--blush), var(--champagne));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .cover-text {
+            text-align: center;
+            padding: 0 30mm 35mm;
+        }
+
+        .cover-names {
+            font-size: 52px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--charcoal);
+            letter-spacing: 2px;
+        }
+
+        .cover-ampersand {
+            font-size: 36px;
+            color: var(--gold);
+            margin: 0 10px;
+        }
+
+        .cover-date {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 20px;
+        }
+
+        .cover-ornament {
+            color: var(--gold);
+            font-size: 20px;
+            margin-top: 15px;
+            letter-spacing: 15px;
+        }
+
+        /* Interior Pages */
+        .interior {
+            background: var(--ivory);
+            padding: 20mm;
+            min-height: 297mm;
+        }
+
+        /* Full Photo Page */
+        .full-photo {
+            width: 100%;
+            height: 100%;
+            min-height: 297mm;
+            position: relative;
+        }
+
+        .full-photo-image {
+            width: 100%;
+            height: 100%;
+            min-height: 297mm;
+            background: linear-gradient(135deg, var(--sage), var(--champagne));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .full-photo-caption {
+            position: absolute;
+            bottom: 25mm;
+            left: 25mm;
+            right: 25mm;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .full-photo-caption h3 {
+            font-size: 24px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .full-photo-caption p {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Photo Grid */
+        .photo-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            height: calc(297mm - 40mm);
+        }
+
+        .photo-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 2fr 1fr;
+            gap: 15px;
+            height: calc(297mm - 40mm);
+        }
+
+        .photo-grid-3 .photo-item:first-child {
+            grid-column: span 2;
+        }
+
+        .photo-item {
+            background: var(--champagne);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--muted);
+            position: relative;
+        }
+
+        /* Quote Page */
+        .quote-page {
+            background: var(--blush);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 297mm;
+            padding: 40mm;
+            text-align: center;
+        }
+
+        .quote-content {
+            max-width: 400px;
+        }
+
+        .quote-ornament-top {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-text {
+            font-size: 26px;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .quote-attribution {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 30px;
+        }
+
+        /* Timeline Page */
+        .timeline-page {
+            background: var(--ivory);
+            padding: 25mm 30mm;
+        }
+
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .timeline-title h2 {
+            font-size: 32px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--charcoal);
+        }
+
+        .timeline-title p {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-time {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .timeline-event {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 5px;
+        }
+
+        .timeline-description {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Thank You Page */
+        .thank-you {
+            background: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 297mm;
+            padding: 40mm;
+            text-align: center;
+        }
+
+        .thank-you-content {
+            max-width: 400px;
+            color: var(--ivory);
+        }
+
+        .thank-you h2 {
+            font-size: 42px;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .thank-you p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .thank-you-names {
+            font-size: 24px;
+            font-style: italic;
+            margin-top: 40px;
+        }
+
+        /* Details Box */
+        .details-box {
+            background: rgba(255,255,255,0.3);
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .details-title {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .details-info {
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* Photo Caption */
+        .photo-caption {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Page Number */
+        .page-number {
+            position: absolute;
+            bottom: 15mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        /* Decorative Elements */
+        .corner-ornament {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold);
+        }
+
+        .corner-ornament.top-left {
+            top: 20mm;
+            left: 20mm;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.top-right {
+            top: 20mm;
+            right: 20mm;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.bottom-left {
+            bottom: 20mm;
+            left: 20mm;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-ornament.bottom-right {
+            bottom: 20mm;
+            right: 20mm;
+            border-left: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div class="page cover">
+        <div class="cover-frame"></div>
+        <div class="cover-photo">[Main Wedding Portrait]</div>
+        <div class="cover-text">
+            <h1 class="cover-names">Emma <span class="cover-ampersand">&</span> James</h1>
+            <p class="cover-date">October 14, 2024</p>
+            <div class="cover-ornament">~ * ~</div>
+        </div>
+    </div>
+
+    <!-- Full Photo - The Ceremony -->
+    <div class="page full-photo">
+        <div class="full-photo-image">[Ceremony Panorama]</div>
+        <div class="full-photo-caption">
+            <h3>The Moment We Said Forever</h3>
+            <p>Willow Creek Estate | 4:30 PM</p>
+        </div>
+    </div>
+
+    <!-- Photo Grid - Getting Ready -->
+    <div class="page interior">
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+
+        <div class="photo-grid-3">
+            <div class="photo-item">[Bride Portrait - Full Length]</div>
+            <div class="photo-item">[Detail: Dress & Bouquet]</div>
+            <div class="photo-item">[Detail: Rings & Shoes]</div>
+        </div>
+
+        <p class="photo-caption" style="margin-top: 15px;">Getting Ready | The Bridal Suite</p>
+
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+    </div>
+
+    <!-- Quote Page -->
+    <div class="page quote-page">
+        <div class="quote-content">
+            <div class="quote-ornament-top">"</div>
+            <p class="quote-text">In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.</p>
+            <p class="quote-attribution">Maya Angelou</p>
+        </div>
+    </div>
+
+    <!-- Our Day Timeline -->
+    <div class="page timeline-page">
+        <div class="timeline-title">
+            <h2>Our Day</h2>
+            <p>October 14, 2024</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="timeline-time">10:00 AM</p>
+                <h4 class="timeline-event">The Morning Begins</h4>
+                <p class="timeline-description">Breakfast with bridesmaids at the estate. Champagne, laughter, and happy tears as we prepared for the day ahead.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-time">2:00 PM</p>
+                <h4 class="timeline-event">First Look</h4>
+                <p class="timeline-description">A private moment in the garden where James saw Emma in her dress for the first time. A moment we'll treasure forever.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-time">4:30 PM</p>
+                <h4 class="timeline-event">The Ceremony</h4>
+                <p class="timeline-description">Under the old oak tree, surrounded by 120 of our closest friends and family, we exchanged vows we wrote ourselves.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-time">6:00 PM</p>
+                <h4 class="timeline-event">Cocktail Hour</h4>
+                <p class="timeline-description">Guests mingled on the terrace with signature cocktails - "Emma's Elderflower" and "James's Old Fashioned."</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-time">7:30 PM</p>
+                <h4 class="timeline-event">Dinner & Dancing</h4>
+                <p class="timeline-description">A farm-to-table feast followed by our first dance to "At Last" by Etta James. Dancing continued until midnight.</p>
+            </div>
+        </div>
+
+        <span class="page-number">7</span>
+    </div>
+
+    <!-- Photo Grid - Reception -->
+    <div class="page interior">
+        <div class="photo-grid-2">
+            <div class="photo-item">[First Dance]</div>
+            <div class="photo-item">[Cake Cutting]</div>
+            <div class="photo-item">[Dance Floor]</div>
+            <div class="photo-item">[Sparkler Exit]</div>
+        </div>
+
+        <p class="photo-caption" style="margin-top: 15px;">The Celebration</p>
+
+        <span class="page-number">11</span>
+    </div>
+
+    <!-- Thank You -->
+    <div class="page thank-you">
+        <div class="thank-you-content">
+            <h2>Thank You</h2>
+            <p>To our families who have loved and supported us through every chapter. To our friends who traveled near and far to celebrate with us. And to each other, for choosing this beautiful adventure together.</p>
+            <p>This day was perfect because you were there to share it with us.</p>
+
+            <div class="thank-you-names">Emma & James</div>
+
+            <div class="details-box">
+                <p class="details-title">Wedding Details</p>
+                <div class="details-info">
+                    Willow Creek Estate<br>
+                    Photography by Sarah Chen<br>
+                    Florals by Bloom & Gather<br>
+                    Catering by Farm Table Co.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
